@@ -1,20 +1,6 @@
-\chapter{Setup and maintenance of the \ReplicaGenOne{}}\label{ch:replica-setup}
+\chapter{Setup and maintenance of the \DRAudi{}}\label{ch:replica-setup}
 
-This chapter applies to the classic \ReplicaGenOne{} instrument panel shown in \autoref{fig:replica-classic}. If your dashboard matches the \ReplicaNextLong{} layout, refer to the previous chapter.
-
-\begin{figure}[htbp]
-    \centering
-    \begin{subfigure}{0.46\textwidth}
-        \includegraphics[width=\linewidth]{digifiz_manual/image046.png}
-        \caption{Classic \ReplicaGenOne{} with square bezel.}
-    \end{subfigure}\hfill
-    \begin{subfigure}{0.46\textwidth}
-        \includegraphics[width=\linewidth]{digifiz_manual/image047.png}
-        \caption{Round-edge fascia used on later kits.}
-    \end{subfigure}
-    \caption{Appearance of the \ReplicaGenOne{} dashboard.}
-    \label{fig:replica-classic}
-\end{figure}
+This chapter applies to all \DRAudi{} instrument panels supplied with this manual.
 
 \section{Handling and screen care}
 \begin{itemize}
@@ -26,16 +12,9 @@ This chapter applies to the classic \ReplicaGenOne{} instrument panel shown in \
 The dashboard contains a DS3231 real-time clock with a CR2032 cell. The battery typically lasts about four years. When it is depleted the clock resets at every power-up. Remove the front and/or rear cover, keep the wiring harnesses connected, and replace the coin cell. Dispose of the spent battery according to local regulations.
 
 \section{Firmware maintenance with USBasp}
-Each kit ships with a USBasp programmer lead already connected inside the housing (\autoref{fig:usbasp-cable}). Install a suitable USBasp driver before flashing. For example, download it from the following address:
+Each kit ships with a USBasp programmer lead already connected inside the housing. Install a suitable USBasp driver before flashing. For example, download it from the following address:
 \displayurl{https://myrobot.ru/downloads/driver-usbasp-v-2.0-usb-isp-windows-7-8-10-xp.php}
 The programmer powers the dashboard when it is connected to a computer, allowing bench checks.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.32\textwidth]{digifiz_manual/image048.png}
-    \caption{USBasp harness orientation inside the \ReplicaGenOne{}.}
-    \label{fig:usbasp-cable}
-\end{figure}
 
 Flash firmware with \texttt{avrdude} using the command below (replace the firmware filename if required):
 
@@ -58,21 +37,14 @@ iOS devices cannot connect to the classic Bluetooth 2.0 module.
     \item In Serial Bluetooth Terminal set the end-of-line character to LF. Disable CR+LF before sending commands.
 \end{itemize}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.32\textwidth]{digifiz_manual/image049.png}
-    \caption{Recommended Serial Bluetooth Terminal configuration.}
-    \label{fig:sbt-settings}
-\end{figure}
-
 Enter commands as space-separated pairs \verb|<number> <value>|. For example, to store an odometer value of 123\,456~km send \verb|11 123456|. Add 128 to a command number to read its current value (\verb|129 0| reports the speed coefficient). The diagnostic command \verb|adc 0| prints raw sensor readings that help the developers analyse faults.
 
 \section{Configuration parameters}
-The primary Bluetooth commands are listed in \autoref{tbl:replica-classic-commands}. Default settings for Generation~1/1.5 and Generation~2 dashboards are summarised in \autoref{tbl:replica-defaults}. Use commands~31--33 only on \ReplicaNextShort{} units; they have no effect on the classic \ReplicaGenOneShort{}.
+The primary configuration commands are listed in \autoref{tbl:replica-classic-commands}. Default settings for the dashboard are summarised in \autoref{tbl:replica-defaults}. Commands~31--33 are only available on firmware revisions that support RGB colour adjustments.
 
 {\scriptsize
 \begin{longtblr}[
-    caption = {Classic \ReplicaGenOne{} configuration commands.},
+    caption = {\DRAudi{} configuration commands.},
     label = {tbl:replica-classic-commands},
 ]{
     colspec = {Q[c,0.14\linewidth] Q[l,0.36\linewidth] Q[l,0.5\linewidth]},
@@ -108,7 +80,7 @@ The primary Bluetooth commands are listed in \autoref{tbl:replica-classic-comman
     25 & \paramname{PARAMETER\_M\_D\_FILTER} & Median filter constant (legacy). \\
     26 & \paramname{PARAMETER\_COOLANT\_MAX\_R} & Coolant ``full-scale'' temperature threshold. \\
     27 & \paramname{PARAMETER\_COOLANT\_MIN\_R} & Coolant ``1~bar'' temperature threshold. \\
-    31--33 & \paramname{PARAMETER\_MAINCOLOR\_[RGB]} & Interface colour components (\ReplicaNextShort{} only). \\
+    31--33 & \paramname{PARAMETER\_MAINCOLOR\_[RGB]} & Interface colour components (if supported by firmware). \\
     37 & \paramname{PARAMETER\_RPM\_FILTER} & RPM filtering aggressiveness. \\
     128 & \paramname{PARAMETER\_READ\_ADDITION} & Add to read any parameter. \\
     255 & \paramname{PARAMETER\_SET\_HOUR} & Set clock hours (24-hour). \\

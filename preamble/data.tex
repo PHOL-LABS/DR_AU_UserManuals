@@ -2,16 +2,14 @@
 \newcommand*{\ManualDocumentType}{Car Digital Dashboard}
 
 %% Product naming shortcuts
-\newcommand*{\ReplicaGenOne}{Digifiz Replica GEN1}
-\newcommand*{\ReplicaGenOneShort}{Replica GEN1}
-\newcommand*{\ReplicaNextPlain}{Digifiz Replica Next}
-\newcommand*{\ReplicaNextLong}{Digifiz Replica Next (or Digifiz Next)}
-\newcommand*{\ReplicaNextShort}{Digifiz Next}
+\newcommand*{\DRAudi}{DR-Audi}
+\newcommand*{\DRAudiGreen}{DR-Audi Green}
+\newcommand*{\DRAudiRed}{DR-Audi Red}
 
 %% Manual title (as printed on the cover)
-\newcommand*{\ManualTitle}{\ReplicaGenOne{} \& \ReplicaNextShort{} User Manual}
+\newcommand*{\ManualTitle}{\DRAudi{} Digital Dashboard User Manual}
 %% Plaintext version for PDF metadata, uncomment if needed (defaults to \ManualTitle)
-\newcommand*{\ManualTitlePlaintext}{Digifiz Replica GEN1 and Digifiz Next User Manual}
+\newcommand*{\ManualTitlePlaintext}{DR-Audi Digital Dashboard User Manual}
 %% Manual title (if custom formatting is needed for the title page, defaults to \ManualTitle)
 \newcommand*{\ManualTitleFront}{%
     \ManualTitle%
@@ -47,28 +45,35 @@
 \newcommand*{\MaintainersDivision}{}
 
 %% Product line or program this manual covers
-\newcommand*{\ProductLine}{Volkswagen Golf®, Jetta I, II}
+\newcommand*{\ProductLine}{Audi Coupe, Coupe Quattro, Quattro/Sport, 80 (B2), 90, 4000}
 
 %% Abstract (recommended length around 80-200 words)
 \newcommand*{\ManualAbstract}{%
-    This user manual documents the \ReplicaGenOne{} and \ReplicaNextLong{} families of digital dashboards developed for Volkswagen Golf Mk2, Jetta Mk2, and Scirocco Mk2 vehicles.
-    It explains how the \ReplicaGenOneShort{} and \ReplicaNextShort{} instrument clusters replace the factory panel, documents the model coding scheme, and summarizes the supplied hardware.
+    This user manual documents the \DRAudi{} digital instrument cluster designed for Audi Coupe, Coupe Quattro, Quattro/Sport, 80~(B2), 90, and 4000 vehicles.
+    It explains how the dashboard replaces the factory panel, decodes the model coding scheme for the \DRAudiGreen{} and \DRAudiRed{} variants, and summarises the supplied hardware.
     The guide details the electrical interfaces, connector pin-outs, operating principle, and measurement capabilities, and provides the environmental limits required for reliable use.
-    Step-by-step instructions cover removal of the factory cluster, installation of the Replica hardware, day-to-day operation, and the multi-function (MFA) features.
-    Dedicated chapters describe configuration of the Wi-Fi enabled \ReplicaNextPlain{} firmware, Bluetooth configuration for the classic \ReplicaGenOneShort{}, and extensive troubleshooting advice for typical issues.
-    Final sections summarize labelling, packaging, and storage recommendations and provide a change log for the manual.
+    Step-by-step instructions cover removal of the factory cluster, repinning of Audi harnesses, day-to-day operation, and the multi-function (MFA) features.
+    Dedicated chapters describe maintenance through the USBasp programmer, configuration via the Bluetooth terminal or miniUIOD Wi-Fi interface, and troubleshooting workflows for typical issues.
+    Final sections summarise labelling, packaging, and storage recommendations and provide a change log for the manual.
 }
 
 %% Subject (short description for PDF metadata)
 \newcommand*{\ManualSubject}{%
-    User manual for Digifiz Replica GEN1 and Digifiz Next digital instrument clusters%
+    User manual for the DR-Audi digital instrument cluster%
 }
 
 %% Keywords (about 3-7)
 \newcommand*{\ManualKeywords}{%
-    Digifiz Replica GEN1, Digifiz Next, Volkswagen, Digital Dashboard, Installation, Configuration%
+    DR-Audi, Digital Dashboard, Audi, Installation, Configuration, miniUIOD%
 }
 %% Plaintext version for PDF metadata, uncomment if needed (defaults to \ManualKeywords)
 \newcommand*{\ManualKeywordsPlaintext}{%
-    Digifiz Replica GEN1, Digifiz Next, Volkswagen, Digital Dashboard, Installation, Configuration%
+    DR-Audi, Digital Dashboard, Audi, Installation, Configuration, miniUIOD%
 }
+
+%% Legacy macros retained for backwards compatibility within the document source
+\newcommand*{\ReplicaGenOne}{\DRAudi}
+\newcommand*{\ReplicaGenOneShort}{\DRAudi}
+\newcommand*{\ReplicaNextPlain}{\DRAudi}
+\newcommand*{\ReplicaNextLong}{\DRAudi}
+\newcommand*{\ReplicaNextShort}{\DRAudi}

@@ -1,13 +1,13 @@
 \chapter{Reference Tables} \label{appendix:reference}
 
-\section{Classic \ReplicaGenOne{} Command Reference}
+\section{\DRAudi{} Command Reference}
 
-The classic Replica firmware shares most commands with \ReplicaNextShort{}.
-Commands 31--33 (colour control) are only active on \ReplicaNextShort{} units; other commands apply equally to both generations.
+The \DRAudi{} firmware shares most commands with the miniUIOD interface.
+Commands 31--33 (colour control) are only active on firmware revisions that support RGB configuration; other commands apply equally to the Bluetooth and Wi-Fi workflows.
 
 \begin{table}[htbp]
     \centering
-    \caption{Primary configuration commands for classic \ReplicaGenOne{} dashboards.}
+    \caption{Primary configuration commands for the \DRAudi{} dashboard.}
     \label{tbl:replica-commands}
     {\scriptsize
     \begin{tblr}{
@@ -32,7 +32,7 @@ Commands 31--33 (colour control) are only active on \ReplicaNextShort{} units; o
         14 & PARAMETER\_BRIGHTNESS\_LEVEL & Manual brightness level. \\
         15 & PARAMETER\_TANK\_CAPACITY & Fuel tank capacity. \\
         16 & PARAMETER\_MFA\_STATE & Active MFA mode. \\
-        17 & PARAMETER\_BUZZER\_OFF & Disable buzzer (Replica only). \\
+        17 & PARAMETER\_BUZZER\_OFF & Disable buzzer (if fitted). \\
         18 & PARAMETER\_MAX\_RPM & Tachometer scaling (7000 default). \\
         19--21 & PARAMETER\_NORMAL\_RESISTANCE\_\textit{X} & Sensor resistances at \SI{25}{\celsius} for coolant, oil, and ambient inputs. \\
         23 & PARAMETER\_DOT\_OFF & Clock colon behaviour. \\
@@ -40,7 +40,7 @@ Commands 31--33 (colour control) are only active on \ReplicaNextShort{} units; o
         25 & PARAMETER\_M\_D\_FILTER & Median filter constant. \\
         26 & PARAMETER\_COOLANT\_MAX\_R & Coolant sensor threshold for full-scale indication. \\
         27 & PARAMETER\_COOLANT\_MIN\_R & Coolant sensor threshold for ``1~bar'' indication. \\
-        31--33 & PARAMETER\_MAINCOLOR\_[RGB] & UI colour components (\ReplicaNextShort{} only). \\
+        31--33 & PARAMETER\_MAINCOLOR\_[RGB] & UI colour components (RGB-enabled firmware only). \\
         37 & PARAMETER\_RPM\_FILTER & RPM filtering aggressiveness. \\
         128 & PARAMETER\_READ\_ADDITION & Add 128 to read the current value of a command. \\
         255 & PARAMETER\_SET\_HOUR & Set clock hours. \\
@@ -51,11 +51,11 @@ Commands 31--33 (colour control) are only active on \ReplicaNextShort{} units; o
     \end{tblr}}
 \end{table}
 
-\section{Classic \ReplicaGenOneShort{} Default Values}
+\section{\DRAudi{} Default Values}
 
 \begin{table}[htbp]
     \centering
-    \caption{Default configuration for the classic \ReplicaGenOne{}.}
+    \caption{Default configuration for the \DRAudi{} dashboard.}
     \label{tbl:replica-defaults}
     {\scriptsize
     \begin{tblr}{
@@ -79,7 +79,7 @@ Commands 31--33 (colour control) are only active on \ReplicaNextShort{} units; o
         PARAMETER\_MILEAGE & Vehicle-specific & Preserve existing odometer. \\
         PARAMETER\_DAILY\_MILEAGE & 0 &  \\
         PARAMETER\_AUTO\_BRIGHTNESS & 1 & Enabled. \\
-        PARAMETER\_BRIGHTNESS\_LEVEL & 7 or 13 & Typical values for Gen~1/1.5. \\
+        PARAMETER\_BRIGHTNESS\_LEVEL & 7 or 13 & Typical Bluetooth defaults (25 on Wi-Fi units). \\
         PARAMETER\_TANK\_CAPACITY & 63 & Litres. \\
         PARAMETER\_MFA\_STATE & 0 &  \\
         PARAMETER\_BUZZER\_OFF & 1 & Buzzer disabled. \\
@@ -92,7 +92,7 @@ Commands 31--33 (colour control) are only active on \ReplicaNextShort{} units; o
         PARAMETER\_M\_D\_FILTER & 65535 &  \\
         PARAMETER\_COOLANT\_MAX\_R & 120 & \si{\celsius}. \\
         PARAMETER\_COOLANT\_MIN\_R & 60 & \si{\celsius}. \\
-        PARAMETER\_MAINCOLOR\_[RGB] & -- & Colour commands not active on classic Replica. \\
+        PARAMETER\_MAINCOLOR\_[RGB] & -- & Colour commands active only on RGB-enabled firmware. \\
         PARAMETER\_RPM\_FILTER & 70 &  \\
         PARAMETER\_UPTIME & 0 &  \\
         \bottomrule

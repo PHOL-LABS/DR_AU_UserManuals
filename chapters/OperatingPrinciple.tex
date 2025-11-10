@@ -1,9 +1,10 @@
 \chapter{Operating Principle} \label{ch:operating-principle}
 
-\ReplicaGenOne{} dashboards reuse the original Volkswagen enclosure, the factory CE~1 or CE~2 connectors, and either the mechanical speedometer cable or an electronic speed sensor.
-\ReplicaGenOneShort{} main boards are based on a fiberglass PCB populated with discrete components controlled by an ATmega~2560 microcontroller and MAX~7219 indicator drivers.
+The \DRAudi{} dashboard reuses the original Audi housing, vehicle connectors, and either the factory mechanical speedometer cable or an electronic speed sensor supplied with the kit.
+The electronics are mounted on a fiberglass PCB populated with discrete components driven by an ATmega~2560 microcontroller.
+Seven-segment indicators are controlled by MAX~7219 and STLED316 driver ICs that manage the anode and cathode matrices of the LED displays.
 
-\ReplicaNextLong{} builds on an ESP32-S3 system-on-chip and introduces a newly manufactured SLA-printed enclosure, a redesigned front panel and cover, and a connector adapter board.
-The \ReplicaNextShort{} display is illuminated by WS2812 addressable LEDs mounted behind the front frame, and the accompanying harness includes the electronic speed sensor by default.
+The faceplate integrates the LED indication block, and the module is powered directly from the vehicle harness without a standby supply; no leakage current is present when the ignition is off.
+The dashboard tolerates input voltages from 9~V to 24~V~DC and reads the vehicle sensors through the wiring described in \autoref{ch:description}.
 
-Both generations share the same display layout and MFA pages, ensuring that installation procedures and day-to-day operation remain familiar between hardware revisions.
+Both the Bluetooth and miniUIOD-equipped variants share the same display layout and MFA pages, ensuring that installation and day-to-day operation remain consistent regardless of the configuration interface.

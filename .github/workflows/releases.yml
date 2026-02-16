@@ -1,0 +1,82 @@
+name: Deploy Releases
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 0
+
+      - name: Set VERSION from tag or commit
+        run: |
+          VERSION=$(git describe --tags --always --dirty=-dev)
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "Using build version: $VERSION"
+
+      - name: Build English manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build German manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_de.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build Spanish manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_es.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build French manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_fr.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build Hungarian manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_hu.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build Russian manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_ru.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Create GitHub Release and upload PDFs
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ env.VERSION }}
+          body: |
+            Automated release for `${{ env.VERSION }}` including all available languages.
+          files: |
+            DR_DRNext_User_Manual_mk1_mk2.pdf
+            DR_DRNext_User_Manual_mk1_mk2_de.pdf
+            DR_DRNext_User_Manual_mk1_mk2_es.pdf
+            DR_DRNext_User_Manual_mk1_mk2_fr.pdf
+            DR_DRNext_User_Manual_mk1_mk2_hu.pdf
+            DR_DRNext_User_Manual_mk1_mk2_ru.pdf

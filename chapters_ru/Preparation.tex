@@ -1,1 +1,68 @@
-% TODO: Placeholder for chapters_ru content update.
+\chapter{Preparation for work and work order}\label{ch:preparation}
+
+\section{Preparing the vehicle}
+Follow the sequence below when replacing the factory cluster with the \DRAudi{} dashboard:
+\begin{enumerate}
+    \item Remove the plastic trim covering the pedals and the lower dashboard to expose the original instrument panel.
+    \item Disconnect the vehicle battery.
+    \item Unplug the wiring harness from the factory instrument panel.
+    \item Detach the mechanical speedometer cable, if present.
+    \item Unscrew the panel from its brackets and carefully remove it from the vehicle.
+    \item Route the supplied speed sensor harness and optional temperature probes as required.
+    \item Install the \DRAudi{} dashboard into the bracket grooves and secure it with screws.
+    \item Connect the steering-column switch harness if the vehicle requires external MFA controls.
+    \item If the vehicle uses the alternative Audi pin-out, repin the connectors according to \autoref{ch:description} before reconnecting the harness.
+    \item Plug the connectors into the dashboard.
+    \item Fit the electronic speed sensor or reconnect the mechanical cable.
+    \item Reinstall the dashboard trim and pedal cover in the reverse order.
+\end{enumerate}
+
+\section{Operating the dashboard}
+\begin{itemize}
+    \item The dashboard powers up automatically with the ignition. The sidelights switch controls the backlight.
+    \item At start-up the entire speed scale illuminates while internal diagnostics stabilise the RPM model; the display then settles on the current idle speed.
+    \item Once the vehicle begins to move, the system reports the parameters listed in \Cref{ch:technical-specs}.
+\end{itemize}
+
+\subsection{MFA functions}
+Six MFA pages are available:
+\begin{enumerate}
+    \item Daily operating time.
+    \item Trip distance.
+    \item Fuel consumption (available when the necessary sensors are fitted).
+    \item Average speed (displayed as the value multiplied by ten).
+    \item Engine oil temperature (external harness required).
+    \item Ambient temperature (external harness required).
+\end{enumerate}
+The Audi-specific dashboards use the steering-column switch to control MFA pages; on vehicles without the switch a short press of the front touch button cycles the modes. Touch durations behave as follows:
+\begin{itemize}
+    \item Short press (\(<1\)~s): cycle to the next MFA function.
+    \item Medium press (1--3~s when no steering-column switch is fitted): switch between MFA memory blocks; the change is indicated on screen.
+    \item Long press (3--7~s): reset the active MFA function (affecting consumption, trip distance, elapsed time, and average speed).
+\end{itemize}
+
+\subsection{Backlight and indicator layout}
+The dashboard offers automatic brightness driven by a photodiode and manual override through the configuration interfaces described in \Cref{ch:replica-setup,ch:replica-next-setup}.
+
+The layout of the horizontal indicator block and the on-screen legend are shown in \autoref{fig:indicator-layout}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{figures/digifizaudi/image017.png}
+        \caption{Indicator layout displayed during the power-on self-test.}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{figures/digifizaudi/image018.png}
+        \caption{Legend for the horizontal indicator group.}
+    \end{subfigure}
+    \caption{Instrument panel indication scheme.}
+    \label{fig:indicator-layout}
+\end{figure}
+
+\subsection{Configuration interfaces}
+\begin{itemize}
+    \item Bluetooth-equipped dashboards use a Bluetooth~2.0 module. Install the \emph{Serial Bluetooth Terminal} application from Google Play, pair with the dashboard, and issue commands directly from the terminal view. Apple iOS devices cannot connect to this module.
+    \item miniUIOD variants expose an embedded Wi-Fi access point and configuration portal described in \Cref{ch:replica-next-setup}. Disable mobile data while connecting to ensure the captive portal loads correctly.
+\end{itemize}
+Both generations can also be powered and configured on the bench using the USBasp programming interface.

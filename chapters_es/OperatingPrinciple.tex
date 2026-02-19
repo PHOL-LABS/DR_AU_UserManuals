@@ -1,9 +1,10 @@
-\chapter{Principio de funcionamiento} \label{ch:operating-principle}
+\chapter{Operating Principle} \label{ch:operating-principle}
 
-Los cuadros \ReplicaGenOne{} reutilizan la carcasa original de Volkswagen, los conectores de fábrica CE~1 o CE~2 y, según la configuración, el cable mecánico del velocímetro o un sensor de velocidad electrónico.
-Las placas principales \ReplicaGenOneShort{} se basan en un PCB de fibra de vidrio poblado con componentes discretos controlados por un microcontrolador ATmega~2560 y controladores de indicadores MAX~7219.
+The \DRAudi{} dashboard reuses the original Audi housing, vehicle connectors, and either the factory mechanical speedometer cable or an electronic speed sensor supplied with the kit.
+The electronics are mounted on a fiberglass PCB populated with discrete components driven by an ATmega~2560 microcontroller.
+Seven-segment indicators are controlled by MAX~7219 and STLED316 driver ICs that manage the anode and cathode matrices of the LED displays.
 
-\ReplicaNextLong{} se basa en un sistema en chip ESP32-S3 e introduce una carcasa de nueva fabricación impresa en SLA, un panel frontal y una tapa rediseñados, y una placa adaptadora de conectores.
-La pantalla \ReplicaNextShort{} se ilumina mediante LED direccionables WS2812 montados detrás del marco frontal, y el mazo correspondiente incluye el sensor de velocidad electrónico de serie.
+The faceplate integrates the LED indication block, and the module is powered directly from the vehicle harness without a standby supply; no leakage current is present when the ignition is off.
+The dashboard tolerates input voltages from 9~V to 24~V~DC and reads the vehicle sensors through the wiring described in \autoref{ch:description}.
 
-Ambas generaciones comparten la misma disposición de pantalla y páginas MFA, lo que garantiza que los procedimientos de instalación y la operación diaria resulten familiares entre revisiones de hardware.
+Both the Bluetooth and miniUIOD-equipped variants share the same display layout and MFA pages, ensuring that installation and day-to-day operation remain consistent regardless of the configuration interface.

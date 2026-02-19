@@ -1,13 +1,13 @@
-\chapter{Description and operation of the product}\label{ch:description}
+\chapter{Beschreibung und Betrieb des Produkts}\label{ch:description}
 
-\section{Purpose}
-The \DRAudi{} digital dashboard replaces the original Audi instrument cluster while extending its functionality.
-It provides fully electronic indications for vehicle speed, engine speed, coolant status, fuel level, multifunction computer (MFA) calculations, and warning lamps.
-All variants ship with LED-based displays, a tachometer scale in every configuration, and either a Bluetooth or miniUIOD Wi-Fi controller for configuration and diagnostics.
+\section{Zweck}
+Das digitale \DRAudi{}-Kombiinstrument ersetzt das originale Audi-Instrument und erweitert dessen Funktionsumfang.
+Es bietet vollständig elektronische Anzeigen für Fahrzeuggeschwindigkeit, Motordrehzahl, Kühlmittelstatus, Kraftstoffstand, MFA-Berechnungen sowie Warnleuchten.
+Alle Varianten besitzen LED-basierte Displays, in jeder Konfiguration eine Drehzahlskala sowie je nach Ausführung einen Bluetooth- oder miniUIOD-WLAN-Controller für Konfiguration und Diagnose.
 
-\section{Model identification}
-Each dashboard is marked with the package code listed in \autoref{tab:model-range}.
-Both variants are assembled units with a remote electronic speed sensor harness and differ only by the colour of the front panel illumination.
+\section{Modellidentifikation}
+Jedes Kombiinstrument ist mit dem in \autoref{tab:model-range} aufgeführten Paketcode gekennzeichnet.
+Beide Varianten sind montagefertige Einheiten mit externem Kabelsatz für den elektronischen Geschwindigkeitssensor und unterscheiden sich nur in der Farbe der Frontbeleuchtung.
 
 {\scriptsize
 \begin{tblr}{
@@ -15,16 +15,16 @@ Both variants are assembled units with a remote electronic speed sensor harness 
     hlines,
     row{1} = {font=\bfseries}
 }
-Model & Description \\
-GART-AR & Petrol applications, assembled unit with remote electronic speed sensor, dual connectors, red illumination. \\
-GART-AG & Petrol applications, assembled unit with remote electronic speed sensor, dual connectors, green illumination. \\
+Modell & Beschreibung \\
+GART-AR & Anwendungen für Ottomotoren, montierte Einheit mit externem elektronischem Geschwindigkeitssensor, Doppelstecker, rote Beleuchtung. \\
+GART-AG & Anwendungen für Ottomotoren, montierte Einheit mit externem elektronischem Geschwindigkeitssensor, Doppelstecker, grüne Beleuchtung. \\
 \end{tblr}}
 \label{tab:model-range}
 
-\section{Connector pin-outs}
-\subsection{Main 10-pin connector}
-The 10-pin plug groups the negative returns for the indicator lamps and sensor leads.
-All positive feeds originate from the companion 12-pin connector.
+\section{Steckverbinderbelegung}
+\subsection{Hauptstecker 10-polig}
+Der 10-polige Stecker bündelt die negativen Rückleitungen der Kontrollleuchten und Sensorleitungen.
+Alle positiven Versorgungen kommen vom zugehörigen 12-poligen Stecker.
 
 {\scriptsize
 \begin{tblr}{
@@ -32,21 +32,21 @@ All positive feeds originate from the companion 12-pin connector.
     hlines,
     row{1} = {font=\bfseries}
 }
-Pin & Assignment \\
-1 & Coolant warning lamp return (temperature indicator negative). \\
-2 & Voltage stabiliser output/input (normally unused). \\
-3 & Ground (KL~31). \\
-4 & Not connected. \\
-5 & Coolant temperature sensor input. \\
-6 & ABS warning lamp return (``ABS AUS''). \\
-7 & Temperature warning lamp driver return (flasher board ``L''). \\
-8 & Oil pressure warning lamp return. \\
-9 & Brake warning lamp return. \\
-10 & Battery/charging indicator return. \\
+Pin & Belegung \\
+1 & Rückleitung Warnleuchte Kühlmittel (Temperaturanzeige negativ). \\
+2 & Ausgang/Eingang Spannungsstabilisator (normalerweise unbenutzt). \\
+3 & Masse (KL~31). \\
+4 & Nicht belegt. \\
+5 & Eingang Kühlmitteltemperatursensor. \\
+6 & Rückleitung ABS-Warnleuchte (\enquote{ABS AUS}). \\
+7 & Rückleitung Treiber Temperaturwarnleuchte (Blinkerplatine \enquote{L}). \\
+8 & Rückleitung Öldruckwarnleuchte. \\
+9 & Rückleitung Bremswarnleuchte. \\
+10 & Rückleitung Batterie/Ladekontrollleuchte. \\
 \end{tblr}}
 
-\subsection{Main 12-pin connector}
-The second connector supplies the positive feeds and sensor inputs required by the dashboard.
+\subsection{Hauptstecker 12-polig}
+Der zweite Stecker führt die positiven Versorgungen und Sensoreingänge, die das Kombiinstrument benötigt.
 
 {\scriptsize
 \begin{tblr}{
@@ -54,111 +54,111 @@ The second connector supplies the positive feeds and sensor inputs required by t
     hlines,
     row{1} = {font=\bfseries}
 }
-Pin & Assignment \\
-1 & Shared positive feed for indicators (turn signals, battery, handbrake, oil, coolant) --- KL~15. \\
-2 & Not connected. \\
-3 & Turn-signal indicator return (combined left/right). \\
-4 & Hazard indicator positive feed. \\
-5 & Rear-window defrost indicator positive feed. \\
-6 & Front lamp heating/fog indicator positive feed. \\
-7 & High-beam indicator positive feed. \\
-8 & Fuel level sender input. \\
-9 & Tachometer input (KL~1 ignition signal). \\
-10 & Permanent +12~V (KL~30). \\
-11 & Lamp flasher supply (bridged to pin~1). \\
-12 & Backlight supply. \\
+Pin & Belegung \\
+1 & Gemeinsame Plusversorgung für Kontrollleuchten (Blinker, Batterie, Handbremse, Öl, Kühlmittel) --- KL~15. \\
+2 & Nicht belegt. \\
+3 & Rückleitung Blinkeranzeige (links/rechts kombiniert). \\
+4 & Plusversorgung Warnblinkanlage. \\
+5 & Plusversorgung Kontrollleuchte Heckscheibenheizung. \\
+6 & Plusversorgung Kontrollleuchte Frontlampenheizung/Nebel. \\
+7 & Plusversorgung Fernlichtkontrollleuchte. \\
+8 & Eingang Kraftstoffstandgeber. \\
+9 & Drehzahleingang (KL~1 Zündsignal). \\
+10 & Dauerplus +12~V (KL~30). \\
+11 & Versorgung Blinkgeberlampe (Brücke zu Pin~1). \\
+12 & Versorgung Hintergrundbeleuchtung. \\
 \end{tblr}}
 
-\section{Steering-column switch harness}
-The auxiliary harness for the steering-column switch provides six conductors:
+\section{Kabelbaum Lenksäulenschalter}
+Der Zusatzkabelbaum für den Lenksäulenschalter stellt sechs Leitungen bereit:
 \begin{enumerate}
-    \item MFA mode selection.
-    \item MFA memory block selection.
-    \item MFA reset.
-    \item Ambient temperature sensor (optional).
-    \item Oil temperature sensor (optional).
-    \item Vehicle ground.
+    \item MFA-Modusauswahl.
+    \item Auswahl MFA-Speicherblock.
+    \item MFA-Reset.
+    \item Außentemperatursensor (optional).
+    \item Öltemperatursensor (optional).
+    \item Fahrzeugmasse.
 \end{enumerate}
 
-\section{Alternative Audi wiring variant}
-Some Audi vehicles use a second connector mapping.
-When encountered, repin the vehicle harness to match the standard layout described above.
-The factory configuration typically follows the tables below.
+\section{Alternative Audi-Verdrahtungsvariante}
+Bei einigen Audi-Fahrzeugen wird eine abweichende Steckerbelegung verwendet.
+In diesem Fall ist der Fahrzeugkabelbaum auf die oben beschriebene Standardbelegung umzupinnen.
+Die werkseitige Konfiguration entspricht typischerweise den folgenden Tabellen.
 
-\subsection{Alternative 10-pin mapping}
+\subsection{Alternative 10-polige Belegung}
 {\scriptsize
 \begin{tblr}{
     colspec={Q[c,1.2cm] X[l]},
     hlines,
     row{1} = {font=\bfseries}
 }
-Pin & Assignment \\
-1 & Voltage stabiliser output (positive, unused). \\
-2 & Not connected. \\
-3 & Not connected. \\
-4 & Shared ground for the clock, backlight, and stabiliser (KL~31). \\
-5 & High-beam indicator. \\
-6 & Oil pressure warning lamp. \\
-7 & Turn-signal input (KL~49). \\
-8 & Turn-signal indicator return. \\
-9 & Coolant temperature sensor. \\
-10 & Oxygen sensor warning lamp. \\
+Pin & Belegung \\
+1 & Ausgang Spannungsstabilisator (Plus, unbenutzt). \\
+2 & Nicht belegt. \\
+3 & Nicht belegt. \\
+4 & Gemeinsame Masse für Uhr, Hintergrundbeleuchtung und Stabilisator (KL~31). \\
+5 & Fernlichtkontrollleuchte. \\
+6 & Öldruckwarnleuchte. \\
+7 & Blinkereingang (KL~49). \\
+8 & Rückleitung Blinkeranzeige. \\
+9 & Kühlmitteltemperatursensor. \\
+10 & Warnleuchte Lambdasonde. \\
 \end{tblr}}
 
-\subsection{Alternative 12-pin mapping}
+\subsection{Alternative 12-polige Belegung}
 {\scriptsize
 \begin{tblr}{
     colspec={Q[c,1.2cm] X[l]},
     hlines,
     row{1} = {font=\bfseries}
 }
-Pin & Assignment \\
-1 & Seatbelt warning lamp. \\
-2 & Parking brake warning lamp. \\
-3 & Hazard indicator lamp. \\
-4 & Ground (KL~31). \\
-5 & Alternator warning lamp. \\
-6 & Fuel level sender. \\
-7 & EGR indicator (+, unused). \\
-8 & EGR indicator (-, unused). \\
-9 & Ignition-switched +12~V (KL~15). \\
-10 & Tachometer input (KL~1). \\
-11 & Clock supply (KL~31). \\
-12 & Backlight supply. \\
+Pin & Belegung \\
+1 & Warnleuchte Sicherheitsgurt. \\
+2 & Warnleuchte Feststellbremse. \\
+3 & Warnleuchte Warnblinkanlage. \\
+4 & Masse (KL~31). \\
+5 & Warnleuchte Lichtmaschine. \\
+6 & Kraftstoffstandgeber. \\
+7 & EGR-Anzeige (+, unbenutzt). \\
+8 & EGR-Anzeige (-, unbenutzt). \\
+9 & Zündungsplus +12~V (KL~15). \\
+10 & Drehzahleingang (KL~1). \\
+11 & Versorgung Uhr (KL~31). \\
+12 & Versorgung Hintergrundbeleuchtung. \\
 \end{tblr}}
 
-\subsection{Repinning procedure}
-Perform the conversion step by step:
+\subsection{Umpinnverfahren}
+Führen Sie die Umrüstung Schritt für Schritt aus:
 \begin{enumerate}
-    \item Extract the terminals from the vehicle connectors using a small screwdriver or terminal tool.
-    \item Confirm that pin~4 on both the 10-pin and 12-pin plugs is bonded to chassis ground.
-    \item Move the chosen ground wire from pin~4 to pin~3 of the 10-pin plug.
-    \item Relocate the wire from pin~9 of the 12-pin plug to pin~1 of the same connector.
-    \item Connect both vehicle connectors to the dashboard, switch on the ignition, and verify that the panel powers up before proceeding.
-    \item Bridge pin~1 of the 10-pin connector to pin~2 of the same connector.
-    \item Connect pin~5 of the 10-pin connector to pin~7 of the 12-pin connector (high beam) and verify the indicator.
-    \item Route pin~6 of the 10-pin connector to pin~8 of the 10-pin connector.
-    \item Move pin~8 of the 10-pin connector to pin~3 of the 12-pin connector; confirm that the turn indicators operate. Use pin~7 if the indicators remain inactive.
-    \item Connect pin~9 of the 10-pin connector to pin~5 of the same connector (coolant temperature sensor).
-    \item Leave the oxygen-sensor warning lamp (10-pin pin~10) disconnected unless the optional internal connector is used.
-    \item Seatbelt and parking-brake warning lamps (12-pin pins~1 and~2) are available on the internal auxiliary connector; connection is optional.
-    \item Jumper pin~3 of the 12-pin connector to pin~4 of the same connector.
-    \item Tie pin~5 of the 12-pin connector to pin~10 of the 10-pin connector (alternator lamp).
-    \item Connect pin~6 of the 12-pin connector to pin~8 of the 12-pin connector (fuel-level sender).
-    \item Bridge pin~10 of the 12-pin connector to pin~9 of the same connector.
-    \item Leave pin~12 of the 12-pin connector in place.
-    \item Label any unused wires and secure them out of the way.
+    \item Kontakte mit kleinem Schraubendreher oder Entriegelungswerkzeug aus den Fahrzeugsteckern lösen.
+    \item Prüfen, dass Pin~4 an 10-poligem und 12-poligem Stecker mit Karosseriemasse verbunden ist.
+    \item Gewählte Masseleitung von Pin~4 auf Pin~3 des 10-poligen Steckers umsetzen.
+    \item Leitung von Pin~9 des 12-poligen Steckers auf Pin~1 desselben Steckers verlegen.
+    \item Beide Fahrzeugstecker am Kombiinstrument anschließen, Zündung einschalten und vor dem Fortfahren die Spannungsversorgung des Panels prüfen.
+    \item Pin~1 des 10-poligen Steckers mit Pin~2 desselben Steckers brücken.
+    \item Pin~5 des 10-poligen Steckers mit Pin~7 des 12-poligen Steckers verbinden (Fernlicht) und Anzeige prüfen.
+    \item Pin~6 des 10-poligen Steckers auf Pin~8 des 10-poligen Steckers führen.
+    \item Pin~8 des 10-poligen Steckers auf Pin~3 des 12-poligen Steckers umsetzen; Blinkerfunktion prüfen. Falls inaktiv, stattdessen Pin~7 verwenden.
+    \item Pin~9 des 10-poligen Steckers mit Pin~5 desselben Steckers verbinden (Kühlmitteltemperatursensor).
+    \item Warnleuchte Lambdasonde (10-polig Pin~10) getrennt lassen, sofern kein optionaler interner Stecker genutzt wird.
+    \item Warnleuchten für Gurt und Handbremse (12-polig Pins~1 und~2) sind am internen Zusatzstecker verfügbar; Anschluss optional.
+    \item Pin~3 des 12-poligen Steckers mit Pin~4 desselben Steckers brücken.
+    \item Pin~5 des 12-poligen Steckers mit Pin~10 des 10-poligen Steckers verbinden (Lichtmaschinenlampe).
+    \item Pin~6 des 12-poligen Steckers mit Pin~8 des 12-poligen Steckers verbinden (Kraftstoffgeber).
+    \item Pin~10 des 12-poligen Steckers mit Pin~9 desselben Steckers brücken.
+    \item Pin~12 des 12-poligen Steckers unverändert belassen.
+    \item Nicht verwendete Leitungen kennzeichnen und sicher befestigen.
 \end{enumerate}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.75\textwidth]{figures/digifizaudi/image009.png}
-    \caption{Repinning diagram for vehicles with the alternative Audi harness.}
+    \caption{Umpinndiagramm für Fahrzeuge mit alternativer Audi-Kabelbaumbelegung.}
 \end{figure}
 
-\section{Service connector}
-A 14-position service connector inside the housing mirrors the external wiring and exposes additional diagnostics.
-The pin assignments differ slightly between the red and green versions; both are summarised below.
+\section{Service-Steckverbinder}
+Ein 14-poliger Service-Steckverbinder im Gehäuse bildet die externe Verdrahtung ab und stellt zusätzliche Diagnosepunkte bereit.
+Die Pinbelegung unterscheidet sich geringfügig zwischen roter und grüner Variante; beide sind unten zusammengefasst.
 
 {\scriptsize
 \begin{tblr}{
@@ -166,21 +166,21 @@ The pin assignments differ slightly between the red and green versions; both are
     hlines,
     row{1} = {font=\bfseries},
 }
-\textbf{Pin} & \textbf{\DRAudiRed{} service connector} \\
-1 & Seatbelt indicator (+). \\
-2 & Speed sensor input. \\
-3 & Vehicle ground. \\
-4 & Rear-window defrost indicator (+). \\
-5 & Left turn-signal input (BLL). \\
-6 & Right turn-signal input (BLR). \\
-7 & Ignition-switched supply. \\
-8 & Brake indicator (+). \\
-9 & Front lamp heating indicator (+). \\
-10 & Reserved fault indicator (+). \\
-11 & ABS indicator (+). \\
-12 & Reserved. \\
-13 & Check-engine indicator (-). \\
-14 & Reserved. \\
+\textbf{Pin} & \textbf{\DRAudiRed{} Service-Steckverbinder} \\
+1 & Sicherheitsgurtanzeige (+). \\
+2 & Eingang Geschwindigkeitssensor. \\
+3 & Fahrzeugmasse. \\
+4 & Anzeige Heckscheibenheizung (+). \\
+5 & Eingang linker Blinker (BLL). \\
+6 & Eingang rechter Blinker (BLR). \\
+7 & Zündungsversorgung. \\
+8 & Bremsanzeige (+). \\
+9 & Anzeige Frontlampenheizung (+). \\
+10 & Reservierte Fehleranzeige (+). \\
+11 & ABS-Anzeige (+). \\
+12 & Reserviert. \\
+13 & Check-Engine-Anzeige (-). \\
+14 & Reserviert. \\
 \end{tblr}}
 
 {\scriptsize
@@ -189,23 +189,23 @@ The pin assignments differ slightly between the red and green versions; both are
     hlines,
     row{1} = {font=\bfseries},
 }
-\textbf{Pin} & \textbf{\DRAudiGreen{} service connector} \\
-1 & Not connected. \\
-2 & Speed sensor input. \\
-3 & Vehicle ground. \\
-4 & Rear-window defrost indicator (+). \\
-5 & Left turn-signal input (BLL). \\
-6 & Right turn-signal input (BLR). \\
-7 & Ignition-switched supply. \\
-8 & Brake indicator (+). \\
-9 & Front lamp heating indicator (+). \\
-10 & Reserved fault indicator (+). \\
-11 & ABS indicator (+). \\
-12 & Reserved. \\
-13 & Check-engine indicator (-). \\
-14 & Reserved. \\
+\textbf{Pin} & \textbf{\DRAudiGreen{} Service-Steckverbinder} \\
+1 & Nicht belegt. \\
+2 & Eingang Geschwindigkeitssensor. \\
+3 & Fahrzeugmasse. \\
+4 & Anzeige Heckscheibenheizung (+). \\
+5 & Eingang linker Blinker (BLL). \\
+6 & Eingang rechter Blinker (BLR). \\
+7 & Zündungsversorgung. \\
+8 & Bremsanzeige (+). \\
+9 & Anzeige Frontlampenheizung (+). \\
+10 & Reservierte Fehleranzeige (+). \\
+11 & ABS-Anzeige (+). \\
+12 & Reserviert. \\
+13 & Check-Engine-Anzeige (-). \\
+14 & Reserviert. \\
 \end{tblr}}
 
-\section{Supplied equipment}
-Each delivery set includes the dashboard assembly, a USBasp programmer, and a speed-sensor harness.
-Electronic speed sensors or cable-drive adapters are supplied according to the selected vehicle kit.
+\section{Mitgelieferte Ausstattung}
+Jeder Liefersatz enthält die Kombiinstrumenteinheit, einen USBasp-Programmer und einen Kabelsatz für den Geschwindigkeitssensor.
+Elektronische Geschwindigkeitssensoren oder Adapter für den Wellenantrieb werden entsprechend dem gewählten Fahrzeugkit mitgeliefert.

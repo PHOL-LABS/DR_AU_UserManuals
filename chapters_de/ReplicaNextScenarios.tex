@@ -1,1 +1,19 @@
-% TODO: Placeholder for chapters_de content update.
+\chapter{Typische Situationen bei der Nutzung der miniUIOD-Schnittstelle}\label{ch:replica-next-scenarios}
+
+\begin{description}
+    \item[Hotspot nicht sichtbar] Näher ans Fahrzeug gehen und sicherstellen, dass es im freien Bereich steht. Mobile Daten deaktivieren, veraltete WLAN-Profile löschen und erneut mit \texttt{Digifiz\_AP} (oder \texttt{PHOL-LABS2}) verbinden.
+    \item[404 bei \texttt{192.168.4.1}] Mobile Daten auf Telefon oder Laptop ausschalten und Seite neu laden. Die Captive-Portal-Erkennung von Android/iOS stört häufig, bis das Mobilfunkmodem deaktiviert ist.
+    \item[Firmware-Updates] Register \emph{WiFi} öffnen und die bereitgestellte Datei \texttt{Digifiz.bin} auswählen. Aktuelle Versionen finden Sie unter:
+        \displayurl{https://github.com/Sgw32/DigifizReplica/releases}
+        Auf \emph{Upload} klicken. Der erste Versuch kann fehlschlagen; Upload ggf. wiederholen. Erfolgreiche Updates leiten auf eine Bestätigungsseite weiter. Vor dem Update Kilometerstand notieren und danach mit \verb|11 <mileage>| wiederherstellen.
+    \item[Befehle werden ignoriert] Browser aktualisieren, zum Register \emph{Control} zurückkehren und den Befehl erneut senden. Nach Eingabe des Wertes die Schaltfläche \emph{Process} drücken.
+    \item[Geschwindigkeitsanzeige falsch] Per WLAN verbinden, bei angezeigten \SI{100}{\kilo\metre\per\hour} fahren, GPS-Wert notieren und \verb|1 <gps_value>| senden (z.~B. \verb|1 85|), um \paramname{PARAMETER\_SPEEDCOEEFICIENT} auf den verifizierten Wert zu setzen.
+    \item[Drehzahlanzeige falsch] \paramname{PARAMETER\_RPMCOEFFICIENT} anpassen. Ältere Firmware nutzt \verb|0 <value>|; aktuelle Versionen nutzen \verb|22 <value>|. Beispiel: \verb|22 1500| halbiert die Anzeige gegenüber \verb|22 3000|.
+    \item[Display zu dunkel] Automatische Helligkeit mit \verb|13 0| deaktivieren und dann den manuellen Wert erhöhen (z.~B. \verb|14 50|). Werte zwischen 45 und 55 testen; über 60 vermeiden, um die LED-Lebensdauer zu schonen.
+    \item[Uhr einstellen] Im Web-Terminal (oder bei Alt-Firmware in Serial Bluetooth Terminal) \verb|255 <hours>| und danach \verb|254 <minutes>| senden. Beispiel: \verb|255 23| und \verb|254 55| setzt 23:55.
+    \item[Kraftstoffwerte eingefroren] Batterie abklemmen und Widerstand zwischen Geberpin und Fahrzeugmasse messen. Gültige Werte liegen typischerweise bei \SIrange{30}{300}{\ohm}. Kurzschlüsse unter \SI{5}{\ohm} oder Unterbrechungen vor dem Wiederanschließen beheben. Wenn Widerstände korrekt variieren, die Anzeige aber nicht, \verb|adc 0|-Werte bei mehreren Füllständen protokollieren und an PHOL-LABS Kft senden.
+    \item[Kraftstoffdurchfluss ungenau] Der optionale Durchflusskanal liefert emulierte Daten und ist ohne Saugrohrdrucksensor unzuverlässig. Werte als experimentell betrachten.
+    \item[Kühlmitteltemperatur außerhalb des Bereichs] \paramname{PARAMETER\_COOLANT\_MIN\_R} und \paramname{PARAMETER\_COOLANT\_MAX\_R} justieren. Beispiel: \verb|27 30| senkt die \enquote{1~bar}-Schwelle auf \SI{30}{\celsius}.
+    \item[Öl- oder Außentemperatur fehlt] Bei abgeklemmter Batterie und kaltem Motor Sensorwiderstand messen. Ölsensoren sollten etwa \SI{2}{\kilo\ohm} \ensuremath{\pm}\SI{0.3}{\kilo\ohm}, Außensensoren etwa \SI{10}{\kilo\ohm} \ensuremath{\pm}\SI{2}{\kilo\ohm} liefern. \paramname{PARAMETER\_NORMAL\_RESISTANCE\_OIL} (Befehl~20) oder \paramname{PARAMETER\_NORMAL\_RESISTANCE\_AMB} (Befehl~21) anpassen; kleinere Werte senken die angezeigte Temperatur, größere Werte erhöhen sie. Bei anhaltenden Problemen \verb|adc 0|-Ausgabe erfassen und PHOL-LABS Kft kontaktieren.
+    \item[Farbe der Oberfläche ändern] RGB-Werte über Befehle 31--33 setzen. Neue Firmwareversionen bieten visuelle Farbregler in der Weboberfläche; daher regelmäßig aktualisieren.
+\end{description}

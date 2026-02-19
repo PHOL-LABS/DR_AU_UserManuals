@@ -1,1 +1,23 @@
-% TODO: Placeholder for chapters_de content update.
+\chapter{Typische Situationen bei der Einrichtung von \DRAudi{}}\label{ch:replica-scenarios}
+
+Vor der Fehlersuche prüfen Sie, ob Sie den Bluetooth-basierten Konfigurationsablauf (\autoref{ch:replica-setup}) oder das miniUIOD-WLAN-Portal (\autoref{ch:replica-next-setup}) verwenden.
+
+\begin{description}
+    \item[Bluetooth-Modul wird nicht erkannt] Mit der Bluetooth-Classic-Schnittstelle des Kombiinstruments koppeln (wird üblicherweise als \texttt{Digifiz} angezeigt). Serial Bluetooth Terminal für Android bleibt das empfohlene Werkzeug: Zeilenendezeichen auf LF setzen und keine reinen BLE-Scanner verwenden, da diese das Modul nicht finden.
+    \item[iPhone oder iPad kann nicht verbinden] Die Bluetooth-2.0-Schnittstelle ist mit iOS-Geräten nicht kompatibel. Verwenden Sie ein Android-Telefon oder einen Computer mit Bluetooth-Seriell-Tool.
+    \item[Befehle werden auf Firmware 2024+ ignoriert] Den Befehlsparser mit \verb|234 123| entsperren und danach die gewünschte Sequenz erneut senden. Für häufig geänderte Werte Schnellzugriffstasten in Serial Bluetooth Terminal anlegen.
+    \item[Geschwindigkeitsanzeige zu hoch oder zu niedrig] Über Serial Bluetooth Terminal verbinden, bei angezeigten \SI{100}{\kilo\metre\per\hour} fahren und GPS-Geschwindigkeit notieren. Dann \verb|1 <gps_value>| senden (z.~B. \verb|1 85|), damit \paramname{PARAMETER\_SPEEDCOEFFICIENT} dem verifizierten GPS-Wert entspricht.
+    \item[Drehzahlanzeige falsch] Firmware vor 2024 erwartet \verb|0 <value>|, aktuelle Versionen verwenden \verb|22 <value>|. Audi-Motoren benötigen typischerweise \verb|22 3000|; Wert halbieren oder verdoppeln (z.~B. \verb|22 1500| oder \verb|22 6000|), bis die Anzeige zum Drehzahlmesser passt.
+    \item[Helligkeit erhöhen] Automatik mit \verb|13 0| deaktivieren und manuellen Wert mit \verb|14 <value>| anheben. Werte zwischen 45 und 55 erhöhen die Helligkeit deutlich; Werte über 60 vermeiden, um die LED-Lebensdauer zu schonen. Danach Fotodiode mit \verb|13 1| wieder aktivieren.
+    \item[Uhr einstellen] In Serial Bluetooth Terminal zuerst \verb|255 <hours>|, dann \verb|254 <minutes>| senden. Beispiele: \verb|255 23| und \verb|254 55| setzt 23:55; \verb|255 14| und \verb|254 30| setzt 14:30; \verb|255 2| und \verb|254 28| setzt 02:28.
+    \item[Probleme mit der Kraftstoffanzeige] Vor Messungen Batterie abklemmen.\begin{itemize}
+        \item Wenn die Anzeige von 60 auf 0 abfällt, den Geberwiderstand zwischen Kabelbaumpin und Masse messen; gültig sind typischerweise \SIrange{30}{300}{\ohm}. Stecker reinigen und Signalweg zur Hauptplatine prüfen.
+        \item Wenn die Anzeige auf \enquote{voll} steht, nach Kurzschluss gegen Masse unter \SI{5}{\ohm} in der Geberleitung suchen und beheben.
+        \item Wenn sich die Anzeige nie ändert, Geberwiderstände bei vollem und leerem Tank vergleichen. Sensor ersetzen, falls der Wert konstant bleibt.
+    \end{itemize}
+    \item[Kraftstoffdurchflusswerte wirken falsch] Der Durchflusskanal ist emuliert, sofern kein Saugrohrdrucksensor verbaut ist. Wert als Richtwert, nicht als absoluten Messwert betrachten.
+    \item[Kühlmittelanzeige ungenau] \paramname{PARAMETER\_COOLANT\_MIN\_R} und \paramname{PARAMETER\_COOLANT\_MAX\_R} anpassen. Beispiel: \verb|27 30| verkürzt die Skala, sodass die \enquote{1~bar}-Marke bei etwa \SI{30}{\celsius} liegt.
+    \item[Öl- oder Außentemperatur fehlt] Ein Wert \texttt{-999} oder ein fester Wert deutet auf ein Sensorproblem hin. Bei abgeklemmter Batterie und kaltem Motor Sensorwiderstand zwischen Kabelbaumpin und Masse messen. Ölsensoren sollten etwa \SI{2}{\kilo\ohm} \ensuremath{\pm}\SI{0.3}{\kilo\ohm}, Außensensoren etwa \SI{10}{\kilo\ohm} \ensuremath{\pm}\SI{2}{\kilo\ohm} anzeigen. \paramname{PARAMETER\_NORMAL\_RESISTANCE\_OIL} (Befehl~20) oder \paramname{PARAMETER\_NORMAL\_RESISTANCE\_AMB} (Befehl~21) zur Feinanpassung nutzen. Anhaltende Fehler mit \verb|adc 0|-Protokollen dokumentieren und an den PHOL-LABS-Kft-Support eskalieren.
+\end{description}
+
+Wenn das Problem weiter besteht, Rohsensordaten mit \verb|adc 0| erfassen und zur Analyse an die Entwickler des Kombiinstruments weitergeben.

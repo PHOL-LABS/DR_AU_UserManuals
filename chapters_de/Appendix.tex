@@ -1,1 +1,122 @@
-% TODO: Placeholder for chapters_de content update.
+\chapter{Referenztabellen} \label{appendix:reference}
+
+\section{\DRAudi{}-Befehlsreferenz}
+
+Die \DRAudi{}-Firmware teilt die meisten Befehle mit der miniUIOD-Schnittstelle.
+Die Befehle 31--33 (Farbsteuerung) sind nur auf Firmwareständen mit RGB-Unterstützung aktiv; alle anderen Befehle gelten gleichermaßen für Bluetooth- und WLAN-Workflows.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Wesentliche Konfigurationsbefehle für das \DRAudi{}-Kombiinstrument.}
+    \label{tbl:replica-commands}
+    {\scriptsize
+    \begin{tblr}{
+        colspec = {Q[c,0.12\linewidth,cmd=\seqsplit,font=\ttfamily] Q[l,0.32\linewidth,cmd=\seqsplit] Q[l,0.52\linewidth]},
+        rowsep = 2pt,
+    }
+        \toprule
+        \SetCell{cmd=\relax}\textbf{Befehl} & \SetCell{cmd=\relax}\textbf{Name} & \textbf{Beschreibung} \\
+        \midrule
+        22 (oder 0) & PARAMETER\_RPMCOEFFICIENT & Kalibrierfaktor Motordrehzahl. \\
+        1  & PARAMETER\_SPEEDCOEFFICIENT & Kalibrierfaktor Geschwindigkeit. \\
+        2  & PARAMETER\_COOLANTTHERMISTORB & Beta-Koeffizient Kühlmittelthermistor. \\
+        3  & PARAMETER\_OILTHERMISTORB & Beta-Koeffizient Ölthermistor. \\
+        4  & PARAMETER\_AIRTHERMISTORB & Beta-Koeffizient Außenthermistor. \\
+        5  & PARAMETER\_TANKMINRESISTANCE & Minimaler Widerstand Kraftstoffgeber. \\
+        6  & PARAMETER\_TANKMAXRESISTANCE & Maximaler Widerstand Kraftstoffgeber. \\
+        7--10 & PARAMETER\_TAU\_\textit{X} & Filterkonstanten für Kühlmittel, Öl, Außenluft und Kraftstoffstand.
+        \\
+        11 & PARAMETER\_MILEAGE & Gesamtkilometerstand. \\
+        12 & PARAMETER\_DAILY\_MILEAGE & Tageskilometerzähler. \\
+        13 & PARAMETER\_AUTO\_BRIGHTNESS & Automatische Helligkeit aktivieren. \\
+        14 & PARAMETER\_BRIGHTNESS\_LEVEL & Manuelle Helligkeitsstufe. \\
+        15 & PARAMETER\_TANK\_CAPACITY & Tankkapazität. \\
+        16 & PARAMETER\_MFA\_STATE & Aktiver MFA-Modus. \\
+        17 & PARAMETER\_BUZZER\_OFF & Summer deaktivieren (falls vorhanden). \\
+        18 & PARAMETER\_MAX\_RPM & Skalierung Drehzahlmesser (Standard 7000). \\
+        19--21 & PARAMETER\_NORMAL\_RESISTANCE\_\textit{X} & Sensorwiderstände bei \SI{25}{\celsius} für Kühlmittel-, Öl- und Außensensoren. \\
+        23 & PARAMETER\_DOT\_OFF & Verhalten Doppelpunkt der Uhr. \\
+        24 & PARAMETER\_BACKLIGHT\_ON & Hintergrundbeleuchtung bei Abblendlicht aktivieren. \\
+        25 & PARAMETER\_M\_D\_FILTER & Medianfilterkonstante. \\
+        26 & PARAMETER\_COOLANT\_MAX\_R & Kühlmittelschwelle für Vollanschlag. \\
+        27 & PARAMETER\_COOLANT\_MIN\_R & Kühlmittelschwelle für \enquote{1~bar}. \\
+        31--33 & PARAMETER\_MAINCOLOR\_[RGB] & Farbkomponenten der Oberfläche (nur RGB-fähige Firmware). \\
+        37 & PARAMETER\_RPM\_FILTER & Filterstärke der Drehzahlanzeige. \\
+        128 & PARAMETER\_READ\_ADDITION & 128 addieren, um den aktuellen Befehlswert zu lesen. \\
+        255 & PARAMETER\_SET\_HOUR & Uhrstunden setzen. \\
+        254 & PARAMETER\_SET\_MINUTE & Uhrminuten setzen. \\
+        253 & PARAMETER\_RESET\_DAILY\_MILEAGE & Tageskilometerzähler zurücksetzen. \\
+        252 & PARAMETER\_RESET\_DIGITAL & Werksreset gespeicherter Parameter. \\
+        \bottomrule
+    \end{tblr}}
+\end{table}
+
+\section{\DRAudi{}-Standardwerte}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Standardkonfiguration für das \DRAudi{}-Kombiinstrument.}
+    \label{tbl:replica-defaults}
+    {\scriptsize
+    \begin{tblr}{
+        colspec = {Q[c,0.22\linewidth,cmd=\seqsplit,font=\ttfamily] Q[c,0.16\linewidth] Q[l,0.46\linewidth]},
+        rowsep = 2pt,
+    }
+        \toprule
+        \SetCell{cmd=\relax}\textbf{Parameter} & \SetCell{cmd=\relax}\textbf{Standard} & \textbf{Hinweise} \\
+        \midrule
+        PARAMETER\_RPMCOEFFICIENT & 3000 &  \\
+        PARAMETER\_SPEEDCOEFFICIENT & 100 &  \\
+        PARAMETER\_COOLANTTHERMISTORB & 4000 &  \\
+        PARAMETER\_OILTHERMISTORB & 4000 &  \\
+        PARAMETER\_AIRTHERMISTORB & 3812 & 3600 bei Gen~2. \\
+        PARAMETER\_TANKMINRESISTANCE & 35 & Ohm. \\
+        PARAMETER\_TANKMAXRESISTANCE & 265 & Ohm. \\
+        PARAMETER\_TAU\_COOLANT & 2 &  \\
+        PARAMETER\_TAU\_OIL & 2 &  \\
+        PARAMETER\_TAU\_AIR & 2 &  \\
+        PARAMETER\_TAU\_TANK & 2 &  \\
+        PARAMETER\_MILEAGE & Fahrzeugspezifisch & Vorhandenen Kilometerstand beibehalten. \\
+        PARAMETER\_DAILY\_MILEAGE & 0 &  \\
+        PARAMETER\_AUTO\_BRIGHTNESS & 1 & Aktiv. \\
+        PARAMETER\_BRIGHTNESS\_LEVEL & 7 oder 13 & Typische Bluetooth-Standardwerte (25 bei WLAN-Einheiten). \\
+        PARAMETER\_TANK\_CAPACITY & 63 & Liter. \\
+        PARAMETER\_MFA\_STATE & 0 &  \\
+        PARAMETER\_BUZZER\_OFF & 1 & Summer deaktiviert. \\
+        PARAMETER\_MAX\_RPM & 8000 & 7000 bei früheren Clustern. \\
+        PARAMETER\_NORMAL\_RESISTANCE\_COOLANT & 1000 & \si{\ohm} bei \SI{25}{\celsius}. \\
+        PARAMETER\_NORMAL\_RESISTANCE\_OIL & 1000 & \si{\ohm} bei \SI{25}{\celsius}. \\
+        PARAMETER\_NORMAL\_RESISTANCE\_AMB & 2991 & \si{\ohm} bei \SI{25}{\celsius}. \\
+        PARAMETER\_DOT\_OFF & 0 & Blinkender Doppelpunkt. \\
+        PARAMETER\_BACKLIGHT\_ON & 1 & Aktiv. \\
+        PARAMETER\_M\_D\_FILTER & 65535 &  \\
+        PARAMETER\_COOLANT\_MAX\_R & 120 & \si{\celsius}. \\
+        PARAMETER\_COOLANT\_MIN\_R & 60 & \si{\celsius}. \\
+        PARAMETER\_MAINCOLOR\_[RGB] & -- & Farbbefehle nur bei RGB-fähiger Firmware aktiv. \\
+        PARAMETER\_RPM\_FILTER & 70 &  \\
+        PARAMETER\_UPTIME & 0 &  \\
+        \bottomrule
+    \end{tblr}}
+\end{table}
+
+\section{Änderungsprotokoll} \label{app:change-log}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Änderungsnachweis des Dokuments.}
+    \label{tbl:change-log}
+    {\scriptsize
+    \begin{tblr}{
+        colspec = {Q[c,0.12\linewidth] Q[l] Q[c,0.2\linewidth]},
+        rowsep = 2pt,
+    }
+        \toprule
+        \textbf{Änderung} & \textbf{Betroffene Seiten} & \textbf{Datum} \\
+        \midrule
+        1 & 04.10.2022 & 04~Oct~2022 \\
+        2 & 31.08.2023 & 31~Aug~2023 \\
+        3 & 05.08.2024 & 05~Aug~2024 \\
+        4 & LaTeX-Dokument eingeführt. & 22.09.2025 \\
+        \bottomrule
+    \end{tblr}}
+\end{table}

@@ -1,1 +1,211 @@
-% TODO: Placeholder for chapters_de content update.
+\chapter{Beschreibung und Betrieb des Produkts}\label{ch:description}
+
+\section{Zweck}
+Das digitale \DRAudi{}-Kombiinstrument ersetzt das originale Audi-Instrument und erweitert dessen Funktionsumfang.
+Es bietet vollständig elektronische Anzeigen für Fahrzeuggeschwindigkeit, Motordrehzahl, Kühlmittelstatus, Kraftstoffstand, MFA-Berechnungen sowie Warnleuchten.
+Alle Varianten besitzen LED-basierte Displays, in jeder Konfiguration eine Drehzahlskala sowie je nach Ausführung einen Bluetooth- oder miniUIOD-WLAN-Controller für Konfiguration und Diagnose.
+
+\section{Modellidentifikation}
+Jedes Kombiinstrument ist mit dem in \autoref{tab:model-range} aufgeführten Paketcode gekennzeichnet.
+Beide Varianten sind montagefertige Einheiten mit externem Kabelsatz für den elektronischen Geschwindigkeitssensor und unterscheiden sich nur in der Farbe der Frontbeleuchtung.
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,2.2cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries}
+}
+Modell & Beschreibung \\
+GART-AR & Anwendungen für Ottomotoren, montierte Einheit mit externem elektronischem Geschwindigkeitssensor, Doppelstecker, rote Beleuchtung. \\
+GART-AG & Anwendungen für Ottomotoren, montierte Einheit mit externem elektronischem Geschwindigkeitssensor, Doppelstecker, grüne Beleuchtung. \\
+\end{tblr}}
+\label{tab:model-range}
+
+\section{Steckverbinderbelegung}
+\subsection{Hauptstecker 10-polig}
+Der 10-polige Stecker bündelt die negativen Rückleitungen der Kontrollleuchten und Sensorleitungen.
+Alle positiven Versorgungen kommen vom zugehörigen 12-poligen Stecker.
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[c,1.2cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries}
+}
+Pin & Belegung \\
+1 & Rückleitung Warnleuchte Kühlmittel (Temperaturanzeige negativ). \\
+2 & Ausgang/Eingang Spannungsstabilisator (normalerweise unbenutzt). \\
+3 & Masse (KL~31). \\
+4 & Nicht belegt. \\
+5 & Eingang Kühlmitteltemperatursensor. \\
+6 & Rückleitung ABS-Warnleuchte (\enquote{ABS AUS}). \\
+7 & Rückleitung Treiber Temperaturwarnleuchte (Blinkerplatine \enquote{L}). \\
+8 & Rückleitung Öldruckwarnleuchte. \\
+9 & Rückleitung Bremswarnleuchte. \\
+10 & Rückleitung Batterie/Ladekontrollleuchte. \\
+\end{tblr}}
+
+\subsection{Hauptstecker 12-polig}
+Der zweite Stecker führt die positiven Versorgungen und Sensoreingänge, die das Kombiinstrument benötigt.
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[c,1.2cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries}
+}
+Pin & Belegung \\
+1 & Gemeinsame Plusversorgung für Kontrollleuchten (Blinker, Batterie, Handbremse, Öl, Kühlmittel) --- KL~15. \\
+2 & Nicht belegt. \\
+3 & Rückleitung Blinkeranzeige (links/rechts kombiniert). \\
+4 & Plusversorgung Warnblinkanlage. \\
+5 & Plusversorgung Kontrollleuchte Heckscheibenheizung. \\
+6 & Plusversorgung Kontrollleuchte Frontlampenheizung/Nebel. \\
+7 & Plusversorgung Fernlichtkontrollleuchte. \\
+8 & Eingang Kraftstoffstandgeber. \\
+9 & Drehzahleingang (KL~1 Zündsignal). \\
+10 & Dauerplus +12~V (KL~30). \\
+11 & Versorgung Blinkgeberlampe (Brücke zu Pin~1). \\
+12 & Versorgung Hintergrundbeleuchtung. \\
+\end{tblr}}
+
+\section{Kabelbaum Lenksäulenschalter}
+Der Zusatzkabelbaum für den Lenksäulenschalter stellt sechs Leitungen bereit:
+\begin{enumerate}
+    \item MFA-Modusauswahl.
+    \item Auswahl MFA-Speicherblock.
+    \item MFA-Reset.
+    \item Außentemperatursensor (optional).
+    \item Öltemperatursensor (optional).
+    \item Fahrzeugmasse.
+\end{enumerate}
+
+\section{Alternative Audi-Verdrahtungsvariante}
+Bei einigen Audi-Fahrzeugen wird eine abweichende Steckerbelegung verwendet.
+In diesem Fall ist der Fahrzeugkabelbaum auf die oben beschriebene Standardbelegung umzupinnen.
+Die werkseitige Konfiguration entspricht typischerweise den folgenden Tabellen.
+
+\subsection{Alternative 10-polige Belegung}
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[c,1.2cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries}
+}
+Pin & Belegung \\
+1 & Ausgang Spannungsstabilisator (Plus, unbenutzt). \\
+2 & Nicht belegt. \\
+3 & Nicht belegt. \\
+4 & Gemeinsame Masse für Uhr, Hintergrundbeleuchtung und Stabilisator (KL~31). \\
+5 & Fernlichtkontrollleuchte. \\
+6 & Öldruckwarnleuchte. \\
+7 & Blinkereingang (KL~49). \\
+8 & Rückleitung Blinkeranzeige. \\
+9 & Kühlmitteltemperatursensor. \\
+10 & Warnleuchte Lambdasonde. \\
+\end{tblr}}
+
+\subsection{Alternative 12-polige Belegung}
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[c,1.2cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries}
+}
+Pin & Belegung \\
+1 & Warnleuchte Sicherheitsgurt. \\
+2 & Warnleuchte Feststellbremse. \\
+3 & Warnleuchte Warnblinkanlage. \\
+4 & Masse (KL~31). \\
+5 & Warnleuchte Lichtmaschine. \\
+6 & Kraftstoffstandgeber. \\
+7 & EGR-Anzeige (+, unbenutzt). \\
+8 & EGR-Anzeige (-, unbenutzt). \\
+9 & Zündungsplus +12~V (KL~15). \\
+10 & Drehzahleingang (KL~1). \\
+11 & Versorgung Uhr (KL~31). \\
+12 & Versorgung Hintergrundbeleuchtung. \\
+\end{tblr}}
+
+\subsection{Umpinnverfahren}
+Führen Sie die Umrüstung Schritt für Schritt aus:
+\begin{enumerate}
+    \item Kontakte mit kleinem Schraubendreher oder Entriegelungswerkzeug aus den Fahrzeugsteckern lösen.
+    \item Prüfen, dass Pin~4 an 10-poligem und 12-poligem Stecker mit Karosseriemasse verbunden ist.
+    \item Gewählte Masseleitung von Pin~4 auf Pin~3 des 10-poligen Steckers umsetzen.
+    \item Leitung von Pin~9 des 12-poligen Steckers auf Pin~1 desselben Steckers verlegen.
+    \item Beide Fahrzeugstecker am Kombiinstrument anschließen, Zündung einschalten und vor dem Fortfahren die Spannungsversorgung des Panels prüfen.
+    \item Pin~1 des 10-poligen Steckers mit Pin~2 desselben Steckers brücken.
+    \item Pin~5 des 10-poligen Steckers mit Pin~7 des 12-poligen Steckers verbinden (Fernlicht) und Anzeige prüfen.
+    \item Pin~6 des 10-poligen Steckers auf Pin~8 des 10-poligen Steckers führen.
+    \item Pin~8 des 10-poligen Steckers auf Pin~3 des 12-poligen Steckers umsetzen; Blinkerfunktion prüfen. Falls inaktiv, stattdessen Pin~7 verwenden.
+    \item Pin~9 des 10-poligen Steckers mit Pin~5 desselben Steckers verbinden (Kühlmitteltemperatursensor).
+    \item Warnleuchte Lambdasonde (10-polig Pin~10) getrennt lassen, sofern kein optionaler interner Stecker genutzt wird.
+    \item Warnleuchten für Gurt und Handbremse (12-polig Pins~1 und~2) sind am internen Zusatzstecker verfügbar; Anschluss optional.
+    \item Pin~3 des 12-poligen Steckers mit Pin~4 desselben Steckers brücken.
+    \item Pin~5 des 12-poligen Steckers mit Pin~10 des 10-poligen Steckers verbinden (Lichtmaschinenlampe).
+    \item Pin~6 des 12-poligen Steckers mit Pin~8 des 12-poligen Steckers verbinden (Kraftstoffgeber).
+    \item Pin~10 des 12-poligen Steckers mit Pin~9 desselben Steckers brücken.
+    \item Pin~12 des 12-poligen Steckers unverändert belassen.
+    \item Nicht verwendete Leitungen kennzeichnen und sicher befestigen.
+\end{enumerate}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/digifizaudi/image009.png}
+    \caption{Umpinndiagramm für Fahrzeuge mit alternativer Audi-Kabelbaumbelegung.}
+\end{figure}
+
+\section{Service-Steckverbinder}
+Ein 14-poliger Service-Steckverbinder im Gehäuse bildet die externe Verdrahtung ab und stellt zusätzliche Diagnosepunkte bereit.
+Die Pinbelegung unterscheidet sich geringfügig zwischen roter und grüner Variante; beide sind unten zusammengefasst.
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[c,0.8cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+\textbf{Pin} & \textbf{\DRAudiRed{} Service-Steckverbinder} \\
+1 & Sicherheitsgurtanzeige (+). \\
+2 & Eingang Geschwindigkeitssensor. \\
+3 & Fahrzeugmasse. \\
+4 & Anzeige Heckscheibenheizung (+). \\
+5 & Eingang linker Blinker (BLL). \\
+6 & Eingang rechter Blinker (BLR). \\
+7 & Zündungsversorgung. \\
+8 & Bremsanzeige (+). \\
+9 & Anzeige Frontlampenheizung (+). \\
+10 & Reservierte Fehleranzeige (+). \\
+11 & ABS-Anzeige (+). \\
+12 & Reserviert. \\
+13 & Check-Engine-Anzeige (-). \\
+14 & Reserviert. \\
+\end{tblr}}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[c,0.8cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+\textbf{Pin} & \textbf{\DRAudiGreen{} Service-Steckverbinder} \\
+1 & Nicht belegt. \\
+2 & Eingang Geschwindigkeitssensor. \\
+3 & Fahrzeugmasse. \\
+4 & Anzeige Heckscheibenheizung (+). \\
+5 & Eingang linker Blinker (BLL). \\
+6 & Eingang rechter Blinker (BLR). \\
+7 & Zündungsversorgung. \\
+8 & Bremsanzeige (+). \\
+9 & Anzeige Frontlampenheizung (+). \\
+10 & Reservierte Fehleranzeige (+). \\
+11 & ABS-Anzeige (+). \\
+12 & Reserviert. \\
+13 & Check-Engine-Anzeige (-). \\
+14 & Reserviert. \\
+\end{tblr}}
+
+\section{Mitgelieferte Ausstattung}
+Jeder Liefersatz enthält die Kombiinstrumenteinheit, einen USBasp-Programmer und einen Kabelsatz für den Geschwindigkeitssensor.
+Elektronische Geschwindigkeitssensoren oder Adapter für den Wellenantrieb werden entsprechend dem gewählten Fahrzeugkit mitgeliefert.

@@ -1,1 +1,173 @@
-% TODO: Placeholder for chapters_de content update.
+\chapter{miniUIOD-Konfiguration und Wartung}\label{ch:replica-next-setup}
+
+Das miniUIOD-Modul ergänzt das \DRAudi{}-Kombiinstrument um eine WLAN-Konfigurationsschnittstelle.
+Die Hardwareanordnung ist in \autoref{fig:next-hardware} dargestellt.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/digifizaudi/image019.png}
+    \caption{Im \DRAudi{}-Kombiinstrument eingebauter miniUIOD-Controller.}
+    \label{fig:next-hardware}
+\end{figure}
+
+\section{Handhabung des Panels}
+\begin{itemize}
+    \item Die UV-bedruckte Polycarbonatfront vor Kratzern und Fremdkörpern schützen. Größere Schäden erfordern Ersatzteile von PHOL-LABS Kft und gelten nicht als Gewährleistungsfall.
+    \item Die Echtzeituhr wird über das WLAN-Bedienfeld konfiguriert. Sie wird zurückgesetzt, sobald die Dauerstromversorgung unterbrochen ist.
+\end{itemize}
+
+\section{WLAN-Steuerportal}
+Konfiguration, Datenerfassung und Firmwareverwaltung erfolgen über die integrierte Webanwendung.
+\begin{itemize}
+    \item Mit dem WLAN-Access-Point des Kombiinstruments verbinden. Mobile Daten deaktivieren und \texttt{Digifiz\_AP} (Passwort \texttt{87654321}) beitreten; einige Revisionen senden \texttt{PHOL-LABS2} mit demselben Passwort.
+    \item Standard-IP ist \texttt{192.168.4.1}. Wenn das Gerät in ein anderes Netzwerk eingebunden wurde, im Subnetz mit einem IP-Tool nach einer Adresse mit Endung \texttt{.32} suchen.
+    \item Das Portal enthält die Register \emph{WiFi}, \emph{Control}, \emph{Settings}, \emph{Colors} und \emph{About} (\autoref{fig:next-control-tabs}). Im Register \emph{WiFi} werden Netzwerkeinstellungen und Firmware-Uploads verwaltet; \emph{Control} dient zur Parameteränderung; \emph{Settings} bietet einen strukturierten Editor für Firmwareparameter; \emph{Colors} verwaltet segmentierte Farbschemata; \emph{About} enthält Autoreninformationen.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{figures/digifizaudi/image020.png}
+        \caption{Übersicht Register \emph{Control}.}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{figures/digifizaudi/image021.png}
+        \caption{Nummerierte Bedienelemente und Befehlseingaben.}
+    \end{subfigure}
+    \caption{miniUIOD-WLAN-Bedienoberfläche.}
+    \label{fig:next-control-tabs}
+\end{figure}
+
+\section{Befehlseingabe}
+Im Register \emph{Control} befinden sich Befehlszeile (1), \emph{Process}-Schaltfläche (2), Ergebnisfenster (3), Schnellbedienung (4), \emph{Save}-Schaltfläche (5) und \emph{Reset}-Schaltfläche (6).
+Befehle als Ganzzahlpaare \verb|<number> <value>| eingeben; Satzzeichen und Anführungszeichen sind nicht erforderlich.
+\autoref{fig:next-command-example} zeigt das Umschalten der automatischen Helligkeit.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.55\textwidth]{figures/digifizaudi/image022.png}
+    \caption{Beispielsequenz zum Deaktivieren der automatischen Helligkeit.}
+    \label{fig:next-command-example}
+\end{figure}
+
+\section{Befehlsreferenz}
+\begin{table}[htbp]
+    \centering
+    \caption{Wichtige miniUIOD-Konfigurationsbefehle.}
+    \label{tbl:next-commands}
+    {\scriptsize
+    \begin{tblr}{
+        colspec = {Q[c,0.14\linewidth] Q[l,0.34\linewidth] Q[l,0.5\linewidth]},
+        rowsep = 2pt,
+    }
+        \toprule
+        \textbf{Befehl} & \textbf{Name} & \textbf{Beschreibung} \\
+        \midrule
+        22 (oder 0) & \paramname{PARAMETER\_RPMCOEFFICIENT} & Kalibrierfaktor Motordrehzahl (100--10000). \\
+        1  & \paramname{PARAMETER\_SPEEDCOEEFICIENT} & Kalibrierfaktor Geschwindigkeit (10--255). \\
+        2  & \paramname{PARAMETER\_COOLANTTHERMISTORB} & Beta-Koeffizient Kühlmittelthermistor (2000--5000). \\
+        3  & \paramname{PARAMETER\_OILTHERMISTORB} & Beta-Koeffizient Ölthermistor (2000--5000). \\
+        4  & \paramname{PARAMETER\_AIRTHERMISTORB} & Beta-Koeffizient Außenthermistor (2000--5000). \\
+        5  & \paramname{PARAMETER\_TANKMINRESISTANCE} & Minimaler Widerstand Kraftstoffgeber (0--1000~\ohm). \\
+        6  & \paramname{PARAMETER\_TANKMAXRESISTANCE} & Maximaler Widerstand Kraftstoffgeber (100--1000~\ohm). \\
+        7  & \paramname{PARAMETER\_TAU\_COOLANT} & Filterkonstante Kühlmitteltemperatur (1--50). \\
+        8  & \paramname{PARAMETER\_TAU\_OIL} & Filterkonstante Öltemperatur (1--50). \\
+        9  & \paramname{PARAMETER\_TAU\_AIR} & Filterkonstante Außentemperatur (1--50). \\
+        10 & \paramname{PARAMETER\_TAU\_TANK} & Filterkonstante Kraftstoffstand (1--50). \\
+        11 & \paramname{PARAMETER\_MILEAGE} & Gesamtkilometerstand (0--999999). \\
+        12 & \paramname{PARAMETER\_DAILY\_MILEAGE} & Tageskilometerzähler (0--9999). \\
+        13 & \paramname{PARAMETER\_AUTO\_BRIGHTNESS} & Automatische Helligkeit (1=ein, 0=aus). \\
+        14 & \paramname{PARAMETER\_BRIGHTNESS\_LEVEL} & Manuelle Helligkeit (0--60\%; Werte über 60 verkürzen LED-Lebensdauer). \\
+        15 & \paramname{PARAMETER\_TANK\_CAPACITY} & Tankkapazität in Litern (0--99). \\
+        16 & \paramname{PARAMETER\_MFA\_STATE} & Aktiver MFA-Modus (normal über Hardwareeingang gesteuert). \\
+        17 & \paramname{PARAMETER\_BUZZER\_OFF} & Summer deaktivieren (1 aus, 0 ein). \\
+        18 & \paramname{PARAMETER\_MAX\_RPM} & Drehzahlmesserskalierung (typisch 7000 oder 8000). \\
+        19 & \paramname{PARAMETER\_NORMAL\_RESISTANCE\_COOLANT} & Widerstand Kühlmittelsensor bei \SI{25}{\celsius} (1000--10000~\ohm). \\
+        20 & \paramname{PARAMETER\_NORMAL\_RESISTANCE\_OIL} & Widerstand Ölsensor bei \SI{25}{\celsius} (1000--10000~\ohm). \\
+        21 & \paramname{PARAMETER\_NORMAL\_RESISTANCE\_AMB} & Widerstand Außensensor bei \SI{25}{\celsius} (1000--10000~\ohm). \\
+        23 & \paramname{PARAMETER\_DOT\_OFF} & Verhalten Doppelpunkt der Uhr (0=blinkt, 1=dauerhaft). \\
+        24 & \paramname{PARAMETER\_BACKLIGHT\_ON} & Hintergrundbeleuchtung mit Abblendlicht aktivieren. \\
+        25 & \paramname{PARAMETER\_M\_D\_FILTER} & Medianfilterkonstante (legacy, meist ungenutzt). \\
+        26 & \paramname{PARAMETER\_COOLANT\_MAX\_R} & Kühlmittelschwelle für Vollanschlag. \\
+        27 & \paramname{PARAMETER\_COOLANT\_MIN\_R} & Kühlmittelschwelle für \enquote{1~bar}. \\
+        31--33 & \paramname{PARAMETER\_MAINCOLOR\_[RGB]} & Farbkomponenten der Benutzeroberfläche. \\
+        37 & \paramname{PARAMETER\_RPM\_FILTER} & Filterstärke Drehzahl (10--200). \\
+        128 & \paramname{PARAMETER\_READ\_ADDITION} & 128 addieren, um aktuellen Wert auszulesen. \\
+        255 & \paramname{PARAMETER\_SET\_HOUR} & Uhrstunden setzen (24-h-Format). \\
+        254 & \paramname{PARAMETER\_SET\_MINUTE} & Uhrminuten setzen. \\
+        253 & \paramname{PARAMETER\_RESET\_DAILY\_MILEAGE} & Tageskilometerzähler zurücksetzen. \\
+        252 & \paramname{PARAMETER\_RESET\_DIGIFIZ} & Werksreset gespeicherter Parameter. \\
+        \bottomrule
+    \end{tblr}}
+\end{table}
+
+\section{Standardwerte}
+\begin{table}[htbp]
+    \centering
+    \caption{Standard-miniUIOD-Einstellungen für das \DRAudi{}-Kombiinstrument.}
+    \label{tbl:next-defaults}
+    {\scriptsize
+    \begin{tblr}{
+        colspec = {Q[l,0.42\linewidth] Q[c,0.15\linewidth] Q[l,0.43\linewidth]},
+        rowsep = 2pt,
+    }
+        \toprule
+        \textbf{Parameter} & \textbf{Standard} & \textbf{Hinweise} \\
+        \midrule
+        \paramname{PARAMETER\_RPMCOEFFICIENT} & 3000 & Typisch für Audi-Zündsignale. \\
+        \paramname{PARAMETER\_SPEEDCOEEFICIENT} & 100 & Kalibriert für \SI{100}{\kilo\metre\per\hour}. \\
+        \paramname{PARAMETER\_COOLANTTHERMISTORB} & 4000 &  \\
+        \paramname{PARAMETER\_OILTHERMISTORB} & 4000 &  \\
+        \paramname{PARAMETER\_AIRTHERMISTORB} & 3812 &  \\
+        \paramname{PARAMETER\_TANKMINRESISTANCE} & 35 & \si{\ohm}. \\
+        \paramname{PARAMETER\_TANKMAXRESISTANCE} & 265 & \si{\ohm}. \\
+        \paramname{PARAMETER\_TAU\_COOLANT} & 2 & Filterkonstante. \\
+        \paramname{PARAMETER\_TAU\_OIL} & 2 & Filterkonstante. \\
+        \paramname{PARAMETER\_TAU\_AIR} & 2 & Filterkonstante. \\
+        \paramname{PARAMETER\_TAU\_TANK} & 2 & Filterkonstante. \\
+        \paramname{PARAMETER\_MILEAGE} & Fahrzeugspezifisch & Gespeicherter Kilometerstand bleibt erhalten. \\
+        \paramname{PARAMETER\_DAILY\_MILEAGE} & 0 &  \\
+        \paramname{PARAMETER\_AUTO\_BRIGHTNESS} & 1 & Aktiv. \\
+        \paramname{PARAMETER\_BRIGHTNESS\_LEVEL} & 25 & Manuelle Helligkeit (bei deaktivierter Automatik anpassen). \\
+        \paramname{PARAMETER\_TANK\_CAPACITY} & 63 & Liter. \\
+        \paramname{PARAMETER\_MFA\_STATE} & 0 & Standard-MFA-Seite. \\
+        \paramname{PARAMETER\_BUZZER\_OFF} & 1 & Summer aus. \\
+        \paramname{PARAMETER\_MAX\_RPM} & 8000 & Drehzahlmesserskala. \\
+        \paramname{PARAMETER\_NORMAL\_RESISTANCE\_COOLANT} & 1000 & \si{\ohm} bei \SI{25}{\celsius}. \\
+        \paramname{PARAMETER\_NORMAL\_RESISTANCE\_OIL} & 1000 & \si{\ohm} bei \SI{25}{\celsius}. \\
+        \paramname{PARAMETER\_NORMAL\_RESISTANCE\_AMB} & 2991 & \si{\ohm} bei \SI{25}{\celsius}. \\
+        \paramname{PARAMETER\_DOT\_OFF} & 0 & Blinkender Uhren-Doppelpunkt. \\
+        \paramname{PARAMETER\_BACKLIGHT\_ON} & 1 & Hintergrundbeleuchtung mit Abblendlicht aktiv. \\
+        \paramname{PARAMETER\_M\_D\_FILTER} & 65535 & Legacy-Medianfilterkonstante. \\
+        \paramname{PARAMETER\_COOLANT\_MAX\_R} & 120 & \si{\celsius}. \\
+        \paramname{PARAMETER\_COOLANT\_MIN\_R} & 60 & \si{\celsius}. \\
+        \paramname{PARAMETER\_MAINCOLOR\_R} & 180 & Gelb-grüner Standardton. \\
+        \paramname{PARAMETER\_MAINCOLOR\_G} & 240 & Gelb-grüner Standardton. \\
+        \paramname{PARAMETER\_MAINCOLOR\_B} & 6 & Gelb-grüner Standardton. \\
+        \paramname{PARAMETER\_RPM\_FILTER} & 70 & Filterverhalten. \\
+        \paramname{PARAMETER\_UPTIME} & 0 & Laufzeitzähler. \\
+        \bottomrule
+    \end{tblr}}
+\end{table}
+
+\section{Parameter auslesen und Beispiele}
+Zum Auslesen eines Parameters 128 zur Befehlsnummer addieren (z.~B. \verb|129 0| für den Geschwindigkeitskoeffizienten).
+Typische Befehle: Automatikhelligkeit aus (\verb|13 0|), wieder ein (\verb|13 1|), Geschwindigkeitskoeffizient anpassen (\verb|1 110| erhöht die Anzeige um 10\%), Kilometerstand setzen (\verb|11 123456|).
+Uhrzeit mit \verb|255 <hours>| und anschließend \verb|254 <minutes>| einstellen.
+
+\section{Servicebefehle}
+Neuere Firmware akzeptiert lesbare Parameternamen, z.~B. \verb|PARAMETER_RPMCOEFFICIENT 3000|.
+Der Diagnosebefehl \verb|adc 0| gibt Roh-ADC-Werte für die Sensoranalyse aus.
+Firmwareaktualisierungen ergänzen visuelle Farbsteuerungen; daher regelmäßig über das Register \emph{WiFi} aktualisieren.
+
+\section{Parametereditor im Register Settings}
+Das Register \emph{Settings} spiegelt die Parameterliste aus \autoref{tbl:next-commands} und \autoref{tbl:next-defaults} und ergänzt Bereiche, Beschreibungen sowie Datentypen.
+Nutzen Sie es, wenn Sie lieber grafisch statt über Befehlsnummern arbeiten.
+
+\section{Benutzerdefinierte Farbschemata}
+Im Register \emph{Colors} steht ein segmentbasierter Editor für die WS2812-LED-Hintergrundbeleuchtung zur Verfügung.
+Mit \emph{Load Scheme} aktive Zuordnung laden, Bereiche anpassen und mit \emph{Set Scheme} hochladen.
+Direkt danach in \emph{Control} wechseln und \emph{Save parameters} drücken, sonst geht das Schema nach Neustart verloren.
+Optional erlauben Export-/Import-Schaltflächen eine JSON-Sicherung des Layouts.
+
+Wenn die benutzerdefinierte Farbschema-Option später im Register \emph{Settings} deaktiviert wird, fällt das Kombiinstrument auf den klassischen Einfarbmodus mit \verb|PARAMETER_MAINCOLOR_R/G/B| zurück.

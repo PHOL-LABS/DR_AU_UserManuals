@@ -1,1 +1,93 @@
-% TODO: Placeholder for chapters_de content update.
+\chapter{Einrichtung und Wartung von \DRAudi{}}\label{ch:replica-setup}
+
+Dieses Kapitel gilt für alle \DRAudi{}-Kombiinstrumente, die mit diesem Handbuch geliefert werden.
+
+\section{Handhabung und Displaypflege}
+\begin{itemize}
+    \item Die Plexiglasfront mit UV-Druck ist empfindlich. Kontakt mit scharfen oder abrasiven Gegenständen vermeiden.
+    \item Oberflächenschäden sind kosmetisch und nicht durch die Gewährleistung abgedeckt. Ersatzteile bei PHOL-LABS Kft anfragen, wenn das Displaymuster verformt ist.
+\end{itemize}
+
+\section{Batterie der Echtzeituhr}
+Das Kombiinstrument enthält eine DS3231-Echtzeituhr mit CR2032-Zelle. Die Batterie hält typischerweise etwa vier Jahre. Bei entladener Batterie wird die Uhr bei jedem Einschalten zurückgesetzt. Vorder- und/oder Rückabdeckung abnehmen, Kabelbäume angeschlossen lassen und die Knopfzelle ersetzen. Verbrauchte Batterie nach lokalen Vorschriften entsorgen.
+
+\section{Firmwarewartung mit USBasp}
+Jedes Kit enthält ein USBasp-Programmierkabel, das bereits im Gehäuse angeschlossen ist. Vor dem Flashen einen geeigneten USBasp-Treiber installieren. Beispiel-Download:
+\displayurl{https://myrobot.ru/downloads/driver-usbasp-v-2.0-usb-isp-windows-7-8-10-xp.php}
+Der Programmer versorgt das Kombiinstrument beim Anschluss an den Computer, sodass Prüfungen auf dem Tisch möglich sind.
+
+Firmware mit \texttt{avrdude} über den folgenden Befehl flashen (Dateiname bei Bedarf anpassen):
+
+\begin{verbatim}
+avrdude -c usbasp -p m2560 -e \
+    -U lfuse:w:0xff:m -U hfuse:w:0x99:m -U efuse:w:0xff:m \
+    -U flash:w:Digifiz.ino.mega.hex
+\end{verbatim}
+
+Nach erfolgreichem Upload die vordere Touch-Taste vier- bis fünfmal drücken, um die Speicherblöcke zu initialisieren. Wenn Blöcke leer bleiben, Flashvorgang wiederholen oder per Bluetooth \verb|252 0| senden, um den Werksreset auszulösen. Fertige Firmware-Images sind veröffentlicht unter:
+\displayurl{https://github.com/Sgw32/DigifizReplica}
+
+\section{Bluetooth-Konfiguration}
+Die meisten Parameter werden über Bluetooth mit einem Android-Telefon und der App Serial Bluetooth Terminal eingestellt. Vor der Kopplung App unter folgendem Link laden:
+\displayurl{https://play.google.com/store/apps/details?id=de.kai_morich.serial_bluetooth_terminal&hl=en&gl=US}
+iOS-Geräte können nicht mit dem klassischen Bluetooth-2.0-Modul verbunden werden.
+
+\begin{itemize}
+    \item Sicherstellen, dass mit der Bluetooth-Classic-Schnittstelle des Kombiinstruments gekoppelt wird, nicht mit reinen BLE-Geräten.
+    \item In Serial Bluetooth Terminal das Zeilenende auf LF setzen und CR+LF deaktivieren.
+\end{itemize}
+
+Befehle als Paar \verb|<number> <value>| eingeben. Beispiel: Für Kilometerstand 123\,456~km \verb|11 123456| senden. Zum Auslesen den Befehlswert um 128 erhöhen (\verb|129 0| liefert den Geschwindigkeitskoeffizienten). Der Diagnosebefehl \verb|adc 0| gibt Rohsensorwerte aus und hilft den Entwicklern bei der Fehleranalyse.
+
+\section{Konfigurationsparameter}
+Die wichtigsten Konfigurationsbefehle sind in \autoref{tbl:replica-classic-commands} aufgeführt. Standardwerte sind in \autoref{tbl:replica-defaults} zusammengefasst. Befehle~31--33 sind nur bei Firmware mit RGB-Farbunterstützung verfügbar.
+
+{\scriptsize
+\begin{longtblr}[
+    caption = {\DRAudi{}-Konfigurationsbefehle.},
+    label = {tbl:replica-classic-commands},
+]{
+    colspec = {Q[c,0.14\linewidth] Q[l,0.36\linewidth] Q[l,0.5\linewidth]},
+    rowsep = 2pt,
+}
+    \toprule
+    \textbf{ID} & \textbf{Name} & \textbf{Beschreibung} \\
+    \midrule
+    22 (oder 0) & \paramname{PARAMETER\_RPMCOEFFICIENT} & Kalibrierfaktor Motordrehzahl. \\
+    1 & \paramname{PARAMETER\_SPEEDCOEFFICIENT} & Kalibrierfaktor Geschwindigkeit. \\
+    2 & \paramname{PARAMETER\_COOLANTTHERMISTORB} & Beta-Koeffizient Kühlmittelthermistor. \\
+    3 & \paramname{PARAMETER\_OILTHERMISTORB} & Beta-Koeffizient Ölthermistor. \\
+    4 & \paramname{PARAMETER\_AIRTHERMISTORB} & Beta-Koeffizient Außenthermistor. \\
+    5 & \paramname{PARAMETER\_TANKMINRESISTANCE} & Minimaler Widerstand Kraftstoffgeber (\si{\ohm}). \\
+    6 & \paramname{PARAMETER\_TANKMAXRESISTANCE} & Maximaler Widerstand Kraftstoffgeber (\si{\ohm}). \\
+    7 & \paramname{PARAMETER\_TAU\_COOLANT} & Filterkonstante Kühlmitteltemperatur. \\
+    8 & \paramname{PARAMETER\_TAU\_OIL} & Filterkonstante Öltemperatur. \\
+    9 & \paramname{PARAMETER\_TAU\_AIR} & Filterkonstante Außentemperatur. \\
+    10 & \paramname{PARAMETER\_TAU\_TANK} & Filterkonstante Kraftstoffstand. \\
+    11 & \paramname{PARAMETER\_MILEAGE} & Gesamtkilometerstand. \\
+    12 & \paramname{PARAMETER\_DAILY\_MILEAGE} & Tageskilometerzähler. \\
+    13 & \paramname{PARAMETER\_AUTO\_BRIGHTNESS} & Automatische Helligkeitsregelung aktivieren. \\
+    14 & \paramname{PARAMETER\_BRIGHTNESS\_LEVEL} & Manuelle Helligkeitsstufe (0--15). \\
+    15 & \paramname{PARAMETER\_TANK\_CAPACITY} & Tankkapazität (Liter). \\
+    16 & \paramname{PARAMETER\_MFA\_STATE} & Aktive MFA-Seite. \\
+    17 & \paramname{PARAMETER\_BUZZER\_OFF} & Summer deaktivieren (1 aus, 0 ein). \\
+    18 & \paramname{PARAMETER\_MAX\_RPM} & Drehzahlmesserskala (Standard 8000). \\
+    19 & \paramname{PARAMETER\_NORMAL\_RESISTANCE\_COOLANT} & Widerstand Kühlmittelsensor bei \SI{25}{\celsius}. \\
+    20 & \paramname{PARAMETER\_NORMAL\_RESISTANCE\_OIL} & Widerstand Ölsensor bei \SI{25}{\celsius}. \\
+    21 & \paramname{PARAMETER\_NORMAL\_RESISTANCE\_AMB} & Widerstand Außensensor bei \SI{25}{\celsius}. \\
+    23 & \paramname{PARAMETER\_DOT\_OFF} & Verhalten Doppelpunkt der Uhr (0 blinkt, 1 dauerhaft). \\
+    24 & \paramname{PARAMETER\_BACKLIGHT\_ON} & Hintergrundbeleuchtung mit Abblendlicht einschalten. \\
+    25 & \paramname{PARAMETER\_M\_D\_FILTER} & Medianfilterkonstante (legacy). \\
+    26 & \paramname{PARAMETER\_COOLANT\_MAX\_R} & Temperaturschwelle Kühlmittel für Vollanschlag. \\
+    27 & \paramname{PARAMETER\_COOLANT\_MIN\_R} & Temperaturschwelle Kühlmittel für \enquote{1~bar}. \\
+    31--33 & \paramname{PARAMETER\_MAINCOLOR\_[RGB]} & Farbkomponenten der Oberfläche (wenn von Firmware unterstützt). \\
+    37 & \paramname{PARAMETER\_RPM\_FILTER} & Filterstärke der Drehzahlanzeige. \\
+    128 & \paramname{PARAMETER\_READ\_ADDITION} & Zum Auslesen eines Parameters addieren. \\
+    255 & \paramname{PARAMETER\_SET\_HOUR} & Uhrstunden setzen (24-Stunden-Format). \\
+    254 & \paramname{PARAMETER\_SET\_MINUTE} & Uhrminuten setzen. \\
+    253 & \paramname{PARAMETER\_RESET\_DAILY\_MILEAGE} & Tageskilometerzähler zurücksetzen. \\
+    252 & \paramname{PARAMETER\_RESET\_DIGITAL} & Werksreset und Speicherinitialisierung. \\
+    \bottomrule
+\end{longtblr}}
+
+Die Schnellbuttons in Serial Bluetooth Terminal eignen sich für Routineaktionen wie das Umschalten der Automatikhelligkeit (\verb|13 0| und \verb|13 1|) oder das Schreiben von Farbwerten. Helligkeiten über \SI{60}{\percent} nur kurzzeitig für Tests verwenden, um die LED-Lebensdauer zu erhalten.

@@ -1,1 +1,68 @@
-% TODO: Placeholder for chapters_de content update.
+\chapter{Arbeitsvorbereitung und Arbeitsablauf}\label{ch:preparation}
+
+\section{Vorbereitung des Fahrzeugs}
+Beim Austausch des Serien-Kombiinstruments gegen das \DRAudi{}-Instrument die folgende Reihenfolge einhalten:
+\begin{enumerate}
+    \item Kunststoffverkleidungen im Pedalbereich und am unteren Armaturenbrett entfernen, um den Zugang zum Originalinstrument herzustellen.
+    \item Fahrzeugbatterie abklemmen.
+    \item Kabelbaum vom serienmäßigen Kombiinstrument abstecken.
+    \item Falls vorhanden, mechanische Tachowelle lösen.
+    \item Kombiinstrument aus den Haltern abschrauben und vorsichtig aus dem Fahrzeug entnehmen.
+    \item Mitgelieferten Kabelsatz für den Geschwindigkeitssensor sowie optionale Temperaturfühler verlegen.
+    \item \DRAudi{}-Kombiinstrument in die Führungen einsetzen und mit Schrauben befestigen.
+    \item Kabelsatz des Lenksäulenschalters anschließen, wenn externe MFA-Bedienung benötigt wird.
+    \item Bei alternativer Audi-Pinbelegung die Stecker gemäß \autoref{ch:description} umpinnen, bevor der Kabelbaum wieder angeschlossen wird.
+    \item Steckverbinder in das Kombiinstrument einstecken.
+    \item Elektronischen Geschwindigkeitssensor montieren oder die mechanische Tachowelle wieder anschließen.
+    \item Armaturenbrettverkleidung und Pedalabdeckung in umgekehrter Reihenfolge montieren.
+\end{enumerate}
+
+\section{Betrieb des Kombiinstruments}
+\begin{itemize}
+    \item Das Kombiinstrument startet automatisch mit der Zündung. Die Standlichtschaltung steuert die Hintergrundbeleuchtung.
+    \item Beim Start leuchtet zunächst die gesamte Geschwindigkeitsskala, während die interne Diagnose das Drehzahlmodell stabilisiert; danach zeigt das Display die aktuelle Leerlaufdrehzahl an.
+    \item Sobald sich das Fahrzeug bewegt, werden die in \Cref{ch:technical-specs} genannten Parameter angezeigt.
+\end{itemize}
+
+\subsection{MFA-Funktionen}
+Es stehen sechs MFA-Seiten zur Verfügung:
+\begin{enumerate}
+    \item Tagesbetriebszeit.
+    \item Fahrtstrecke.
+    \item Kraftstoffverbrauch (nur bei vorhandener Sensorik).
+    \item Durchschnittsgeschwindigkeit (Anzeige als Wert mal zehn).
+    \item Motoröltemperatur (externer Kabelsatz erforderlich).
+    \item Außentemperatur (externer Kabelsatz erforderlich).
+\end{enumerate}
+Bei den Audi-spezifischen Varianten wird die MFA über den Lenksäulenschalter bedient; bei Fahrzeugen ohne diesen Schalter wechselt ein kurzer Druck auf die vordere Touch-Taste den Modus. Die Druckdauer wirkt wie folgt:
+\begin{itemize}
+    \item Kurzer Druck (\(<1\)~s): zur nächsten MFA-Funktion wechseln.
+    \item Mittlerer Druck (1--3~s, wenn kein Lenksäulenschalter verbaut ist): zwischen MFA-Speicherblöcken umschalten; die Änderung wird im Display angezeigt.
+    \item Langer Druck (3--7~s): aktive MFA-Funktion zurücksetzen (betrifft Verbrauch, Strecke, Zeit und Durchschnittsgeschwindigkeit).
+\end{itemize}
+
+\subsection{Hintergrundbeleuchtung und Anzeigelayout}
+Das Kombiinstrument bietet eine automatische Helligkeitsregelung über eine Fotodiode sowie eine manuelle Übersteuerung über die in \Cref{ch:replica-setup,ch:replica-next-setup} beschriebenen Konfigurationsschnittstellen.
+
+Die Anordnung der horizontalen Kontrollleuchten und die Legende sind in \autoref{fig:indicator-layout} dargestellt.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{figures/digifizaudi/image017.png}
+        \caption{Anzeigelayout während des Selbsttests beim Einschalten.}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{figures/digifizaudi/image018.png}
+        \caption{Legende der horizontalen Kontrollleuchtengruppe.}
+    \end{subfigure}
+    \caption{Anzeigeschema des Kombiinstruments.}
+    \label{fig:indicator-layout}
+\end{figure}
+
+\subsection{Konfigurationsschnittstellen}
+\begin{itemize}
+    \item Bluetooth-Varianten verwenden ein Bluetooth-2.0-Modul. Installieren Sie \emph{Serial Bluetooth Terminal} aus Google Play, koppeln Sie mit dem Kombiinstrument und senden Sie Befehle direkt in der Terminalansicht. Apple-iOS-Geräte können mit diesem Modul nicht verbunden werden.
+    \item miniUIOD-Varianten stellen einen integrierten WLAN-Access-Point mit Konfigurationsportal bereit, beschrieben in \Cref{ch:replica-next-setup}. Deaktivieren Sie mobile Daten während der Verbindung, damit das Captive Portal korrekt geladen wird.
+\end{itemize}
+Beide Generationen können zudem auf dem Prüftisch über die USBasp-Programmierschnittstelle versorgt und konfiguriert werden.

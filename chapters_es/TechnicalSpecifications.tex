@@ -1,13 +1,13 @@
-\chapter{Technical specifications}\label{ch:technical-specs}
+\chapter{Especificaciones técnicas}\label{ch:technical-specs}
 
-The \DRAudi{} dashboard draws no leakage current when switched off and operates from the vehicle electrical system between 9~V and 24~V~DC.
+El cuadro \ReplicaGenOne{} no consume corriente en reposo cuando está apagado. \ReplicaNextShort{} demanda aproximadamente 13~mA de la alimentación de +12~V con el encendido desconectado, lo que debe tenerse en cuenta cuando el vehículo permanece almacenado durante periodos prolongados. Ambas generaciones funcionan de forma fiable con el sistema eléctrico del vehículo entre 9~V y 16~V~CC.
 
-\section{Measurement capabilities}
+\section{Capacidades de medición}
 \begin{itemize}
-    \item \textbf{Vehicle speed:} measured through the factory cable or electronic speed sensor. The systematic error is 10~km/h, the relative error is 3~km/h, and the indication saturates at 999~km/h (or mph for imperial units).
-    \item \textbf{Engine speed:} derived from the ignition signal via an optocoupler stage with a 430~nF/1.2~k\ensuremath{\Omega} RC network and a diode limiter. The absolute and relative errors are within 200~rpm.
-    \item \textbf{Fuel level:} read from the resistive tank sender with an uncertainty of approximately 10~litres.
-    \item \textbf{Coolant temperature:} indicated qualitatively using the standard thermistor connected through the vehicle harness; quantitative values are not displayed.
-    \item \textbf{Timekeeping:} maintained to within one minute.
-    \item \textbf{Indicator lamps:} direction indicators, high beam, oil pressure warnings, generator status, handbrake, rear window heating or diesel glow-plug, and front and rear fog lights.
+    \item \textbf{Velocidad del vehículo:} medida mediante el cable de fábrica o un sensor de velocidad electrónico. El error sistemático es de 10~km/h, el error relativo es de 3~km/h y la indicación se satura en 999~km/h (o mph para unidades imperiales).
+    \item \textbf{Régimen del motor:} derivado de la señal de encendido a través de una etapa con optoacoplador con una red RC de 430~nF/1.2~k\ensuremath{\Omega} y un limitador por diodo. Los errores absoluto y relativo se mantienen dentro de 200~rpm.
+    \item \textbf{Nivel de combustible:} leído del aforador resistivo del depósito con una incertidumbre de aproximadamente 10~litros.
+    \item \textbf{Temperatura del refrigerante:} indicada de forma cualitativa utilizando el termistor estándar conectado mediante el mazo del vehículo; no se muestran valores cuantitativos.
+    \item \textbf{Cronometraje:} mantenido con una precisión de un minuto.
+    \item \textbf{Testigos:} intermitentes, luces largas, advertencias de presión de aceite, estado del generador, freno de mano, luneta térmica o precalentamiento diésel y luces antiniebla delanteras y traseras.
 \end{itemize}

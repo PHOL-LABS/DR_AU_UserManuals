@@ -1,211 +1,258 @@
-\chapter{Description and operation of the product}\label{ch:description}
+\chapter{Descripción y funcionamiento del producto}\label{ch:description}
 
-\section{Purpose}
-The \DRAudi{} digital dashboard replaces the original Audi instrument cluster while extending its functionality.
-It provides fully electronic indications for vehicle speed, engine speed, coolant status, fuel level, multifunction computer (MFA) calculations, and warning lamps.
-All variants ship with LED-based displays, a tachometer scale in every configuration, and either a Bluetooth or miniUIOD Wi-Fi controller for configuration and diagnostics.
+\section{Finalidad}
+Los cuadros \ReplicaGenOne{} y \ReplicaNextLong{} sustituyen a los conjuntos de instrumentos originales de Volkswagen y amplían su funcionalidad. Ofrecen indicaciones digitales de velocidad, régimen del motor, temperatura del refrigerante, nivel de combustible y cálculos auxiliares de la MFA, y son compatibles tanto con sensores de velocidad por cable como electrónicos. Las unidades \ReplicaGenOneShort{} integran un controlador Bluetooth, mientras que \ReplicaNextShort{} añade módulos de configuración mediante Wi-Fi y unidades de expansión opcionales.
 
-\section{Model identification}
-Each dashboard is marked with the package code listed in \autoref{tab:model-range}.
-Both variants are assembled units with a remote electronic speed sensor harness and differ only by the colour of the front panel illumination.
+\section{Identificación del modelo}
+Cada cuadro está marcado con un código de cuatro letras que describe la cadena cinemática, el tipo de montaje, la interfaz del sensor de velocidad y la generación del mazo. Dígitos opcionales indican la escala admitida del cuentarrevoluciones, y un sufijo adicional de tres letras informa sobre las unidades de medida para exportación.
 
+\subsection{Designación de cuatro letras}
+\begin{description}
+    \item[Posición~1] \textbf{G} para motores de gasolina o \textbf{D} para motores diésel.
+    \item[Posición~2] \textbf{A} para unidades ensambladas en fábrica o \textbf{M} para kits de autoensamblaje.
+    \item[Posición~3] \textbf{C} para sensor de velocidad mecánico por cable o \textbf{R} para sensor de velocidad electrónico.
+    \item[Posición~4] \textbf{T} para el mazo anterior al facelift (CE~1) o \textbf{S} para el mazo posterior (CE~2).
+\end{description}
+Un dígito final indica la velocidad máxima mostrada del motor en miles de RPM (por ejemplo, “8” en un cuadro GACT8 equivale a una escala de 8000~RPM).
+
+\subsection{Sufijo de unidades}
+Las variantes de exportación pueden añadir un sufijo de tres letras formado a partir del conjunto \texttt{MGFK}:
+\begin{description}
+    \item[M] millas por hora,
+    \item[G] galones,
+    \item[F] Fahrenheit,
+    \item[K] Kelvin.
+\end{description}
+Por ejemplo, un cuadro \texttt{GART8-MGF} es una unidad de gasolina, ensamblada en fábrica, con sensor electrónico, mazo CE~2, tacómetro de 8000~RPM y unidades de medida imperiales.
+
+\section{Gama de modelos}
 {\scriptsize
 \begin{tblr}{
     colspec={Q[l,2.2cm] X[l]},
-    hlines,
-    row{1} = {font=\bfseries}
+    hlines
 }
-Model & Description \\
-GART-AR & Petrol applications, assembled unit with remote electronic speed sensor, dual connectors, red illumination. \\
-GART-AG & Petrol applications, assembled unit with remote electronic speed sensor, dual connectors, green illumination. \\
+\textbf{Modelo} & \textbf{Descripción} \\
+GACT & Gasolina, completamente ensamblado, sensor de velocidad por cable, dos conectores, escala de 7000~RPM. \\
+GART & Gasolina, completamente ensamblado, sensor de velocidad electrónico remoto, dos conectores, escala de 7000~RPM. \\
+GAC & Gasolina, completamente ensamblado, sensor de velocidad por cable, un conector, escala de 7000~RPM. \\
+GARS & Gasolina, completamente ensamblado, sensor de velocidad electrónico remoto, un conector, escala de 7000~RPM. \\
+GACT8 & Gasolina, completamente ensamblado, sensor de velocidad por cable, dos conectores, escala de 8000~RPM. \\
+GART8 & Gasolina, completamente ensamblado, sensor de velocidad electrónico remoto, dos conectores, escala de 8000~RPM. \\
+GACS8 & Gasolina, completamente ensamblado, sensor de velocidad por cable, un conector, escala de 8000~RPM. \\
+GARS8 & Gasolina, completamente ensamblado, sensor de velocidad electrónico remoto, un conector, escala de 8000~RPM. \\
+DACT & Diésel, completamente ensamblado, sensor de velocidad por cable, dos conectores, escala de 6000~RPM. \\
+DART & Diésel, completamente ensamblado, sensor de velocidad electrónico remoto, dos conectores, escala de 6000~RPM. \\
+DACS & Diésel, completamente ensamblado, sensor de velocidad por cable, un conector, escala de 6000~RPM. \\
+DARS & Diésel, completamente ensamblado, sensor de velocidad electrónico remoto, un conector, escala de 6000~RPM. \\
+MT & Kit de autoensamblaje con dos conectores. \\
+M.S. & Kit de autoensamblaje con un conector. \\
+NEXT-GART & \ReplicaNextLong{}, escala de 8000~RPM, dos conectores, sensor de velocidad electrónico. \\
+NEXT-GARS & \ReplicaNextLong{}, escala de 8000~RPM, un conector, sensor de velocidad electrónico. \\
+NEXT-MT & Kit de autoensamblaje \ReplicaNextLong{} con dos conectores. \\
+NEXT-MS & Kit de autoensamblaje \ReplicaNextLong{} con un conector. \\
 \end{tblr}}
-\label{tab:model-range}
 
-\section{Connector pin-outs}
-\subsection{Main 10-pin connector}
-The 10-pin plug groups the negative returns for the indicator lamps and sensor leads.
-All positive feeds originate from the companion 12-pin connector.
+\section{Asignación de pines de los conectores}
+\subsection{Cuadros con dos conectores}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.72\textwidth]{digifiz_manual/image008.jpg}
+    \caption{Distribución de conectores para cuadros \ReplicaGenOne{} con dos enchufes.}
+\end{figure}
+
+\noindent\textbf{Conector blanco}
 
 {\scriptsize
 \begin{tblr}{
-    colspec={Q[c,1.2cm] X[l]},
-    hlines,
-    row{1} = {font=\bfseries}
+    colspec={Q[l,1.4cm] X[l]},
+    hlines
 }
-Pin & Assignment \\
-1 & Coolant warning lamp return (temperature indicator negative). \\
-2 & Voltage stabiliser output/input (normally unused). \\
-3 & Ground (KL~31). \\
-4 & Not connected. \\
-5 & Coolant temperature sensor input. \\
-6 & ABS warning lamp return (``ABS AUS''). \\
-7 & Temperature warning lamp driver return (flasher board ``L''). \\
-8 & Oil pressure warning lamp return. \\
-9 & Brake warning lamp return. \\
-10 & Battery/charging indicator return. \\
+\textbf{Pin} & \textbf{Asignación} \\
+1 & Salida de intermitente, conectada a masa para la lámpara indicadora. \\
+2 & Frei — sin conexión. \\
+3 & Terminal~58, alimentación positiva para la retroiluminación del panel. \\
+4 & Entrada del sensor resistivo de temperatura del refrigerante. \\
+5 & Entrada del sensor resistivo del nivel de combustible. \\
+6 & Retorno de masa. \\
+7 & Retorno de masa adicional. \\
+8 & Señal de régimen del motor en el terminal~1 (bobina, distribuidor u otra forma de onda de hasta 12~V con posibles picos de 300~V). \\
+9 & Línea de modo MFA utilizada para cambiar las funciones de la MFA. \\
+10 & Alimentación positiva permanente UNR (sin uso en \ReplicaGenOneShort{}, alimentación principal en \ReplicaNextShort{}). \\
+11 & Conductor “+” de temperatura MFA para el sensor ambiental (\ReplicaNextShort{}). \\
+12 & Conductor del sensor de temperatura de aceite MFA (solo \ReplicaNextShort{}). \\
+13 & Entrada del indicador de luces largas KL~56a (+12~V activo). \\
 \end{tblr}}
 
-\subsection{Main 12-pin connector}
-The second connector supplies the positive feeds and sensor inputs required by the dashboard.
+\noindent\textbf{Conector negro}
 
 {\scriptsize
 \begin{tblr}{
-    colspec={Q[c,1.2cm] X[l]},
-    hlines,
-    row{1} = {font=\bfseries}
+    colspec={Q[l,1.4cm] X[l]},
+    hlines
 }
-Pin & Assignment \\
-1 & Shared positive feed for indicators (turn signals, battery, handbrake, oil, coolant) --- KL~15. \\
-2 & Not connected. \\
-3 & Turn-signal indicator return (combined left/right). \\
-4 & Hazard indicator positive feed. \\
-5 & Rear-window defrost indicator positive feed. \\
-6 & Front lamp heating/fog indicator positive feed. \\
-7 & High-beam indicator positive feed. \\
-8 & Fuel level sender input. \\
-9 & Tachometer input (KL~1 ignition signal). \\
-10 & Permanent +12~V (KL~30). \\
-11 & Lamp flasher supply (bridged to pin~1). \\
-12 & Backlight supply. \\
+\textbf{Pin} & \textbf{Asignación} \\
+1 & Terminal~15, +12~V conmutados desde el interruptor de encendido. \\
+2--4 & Sin conexión. \\
+5 & Entrada del indicador de freno de mano (activo en bajo). \\
+6 & Salida de la lámpara de advertencia del generador KL~61 con resistencia de excitación de 120~\ensuremath{\Omega}. \\
+7 & Interruptor de presión de aceite, 0.3~bar. \\
+8 & Interruptor de presión de aceite, 1.8~bar. \\
+9 & Sin uso. \\
+10 & Entrada del indicador de precalentamiento (+12~V activo, solo diésel). \\
+11 & Entrada de sensor Hall para sensores de velocidad opcionales. \\
+12 & Línea de selección de bloque MFA. \\
+13 & Línea de reinicio MFA. \\
 \end{tblr}}
 
-\section{Steering-column switch harness}
-The auxiliary harness for the steering-column switch provides six conductors:
-\begin{enumerate}
-    \item MFA mode selection.
-    \item MFA memory block selection.
-    \item MFA reset.
-    \item Ambient temperature sensor (optional).
-    \item Oil temperature sensor (optional).
-    \item Vehicle ground.
-\end{enumerate}
-
-\section{Alternative Audi wiring variant}
-Some Audi vehicles use a second connector mapping.
-When encountered, repin the vehicle harness to match the standard layout described above.
-The factory configuration typically follows the tables below.
-
-\subsection{Alternative 10-pin mapping}
-{\scriptsize
-\begin{tblr}{
-    colspec={Q[c,1.2cm] X[l]},
-    hlines,
-    row{1} = {font=\bfseries}
-}
-Pin & Assignment \\
-1 & Voltage stabiliser output (positive, unused). \\
-2 & Not connected. \\
-3 & Not connected. \\
-4 & Shared ground for the clock, backlight, and stabiliser (KL~31). \\
-5 & High-beam indicator. \\
-6 & Oil pressure warning lamp. \\
-7 & Turn-signal input (KL~49). \\
-8 & Turn-signal indicator return. \\
-9 & Coolant temperature sensor. \\
-10 & Oxygen sensor warning lamp. \\
-\end{tblr}}
-
-\subsection{Alternative 12-pin mapping}
-{\scriptsize
-\begin{tblr}{
-    colspec={Q[c,1.2cm] X[l]},
-    hlines,
-    row{1} = {font=\bfseries}
-}
-Pin & Assignment \\
-1 & Seatbelt warning lamp. \\
-2 & Parking brake warning lamp. \\
-3 & Hazard indicator lamp. \\
-4 & Ground (KL~31). \\
-5 & Alternator warning lamp. \\
-6 & Fuel level sender. \\
-7 & EGR indicator (+, unused). \\
-8 & EGR indicator (-, unused). \\
-9 & Ignition-switched +12~V (KL~15). \\
-10 & Tachometer input (KL~1). \\
-11 & Clock supply (KL~31). \\
-12 & Backlight supply. \\
-\end{tblr}}
-
-\subsection{Repinning procedure}
-Perform the conversion step by step:
-\begin{enumerate}
-    \item Extract the terminals from the vehicle connectors using a small screwdriver or terminal tool.
-    \item Confirm that pin~4 on both the 10-pin and 12-pin plugs is bonded to chassis ground.
-    \item Move the chosen ground wire from pin~4 to pin~3 of the 10-pin plug.
-    \item Relocate the wire from pin~9 of the 12-pin plug to pin~1 of the same connector.
-    \item Connect both vehicle connectors to the dashboard, switch on the ignition, and verify that the panel powers up before proceeding.
-    \item Bridge pin~1 of the 10-pin connector to pin~2 of the same connector.
-    \item Connect pin~5 of the 10-pin connector to pin~7 of the 12-pin connector (high beam) and verify the indicator.
-    \item Route pin~6 of the 10-pin connector to pin~8 of the 10-pin connector.
-    \item Move pin~8 of the 10-pin connector to pin~3 of the 12-pin connector; confirm that the turn indicators operate. Use pin~7 if the indicators remain inactive.
-    \item Connect pin~9 of the 10-pin connector to pin~5 of the same connector (coolant temperature sensor).
-    \item Leave the oxygen-sensor warning lamp (10-pin pin~10) disconnected unless the optional internal connector is used.
-    \item Seatbelt and parking-brake warning lamps (12-pin pins~1 and~2) are available on the internal auxiliary connector; connection is optional.
-    \item Jumper pin~3 of the 12-pin connector to pin~4 of the same connector.
-    \item Tie pin~5 of the 12-pin connector to pin~10 of the 10-pin connector (alternator lamp).
-    \item Connect pin~6 of the 12-pin connector to pin~8 of the 12-pin connector (fuel-level sender).
-    \item Bridge pin~10 of the 12-pin connector to pin~9 of the same connector.
-    \item Leave pin~12 of the 12-pin connector in place.
-    \item Label any unused wires and secure them out of the way.
-\end{enumerate}
+\subsection{Cuadros con un solo conector}
+Los cuadros con un único conector utilizan la asignación mostrada en \autoref{fig:single-connector}. El mazo reproduce las mismas señales presentes en las variantes de dos conectores, pero las concentra en un único enchufe.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{figures/digifizaudi/image009.png}
-    \caption{Repinning diagram for vehicles with the alternative Audi harness.}
+    \includegraphics[width=0.65\textwidth]{digifiz_manual/image009.png}
+    \caption{Distribución de un solo conector utilizada en los cuadros Replica compactos.}
+    \label{fig:single-connector}
 \end{figure}
 
-\section{Service connector}
-A 14-position service connector inside the housing mirrors the external wiring and exposes additional diagnostics.
-The pin assignments differ slightly between the red and green versions; both are summarised below.
+\subsection{Mazo prospectivo Scirocco/Passat}
+El mazo prospectivo para Scirocco/Passat utiliza dos conectores. Sus funciones se resumen a continuación.
 
+\noindent\textbf{Conector de 5 pines}
 {\scriptsize
 \begin{tblr}{
-    colspec={Q[c,0.8cm] X[l]},
-    hlines,
-    row{1} = {font=\bfseries},
+    colspec={Q[l,2.6cm] X[l]},
+    hlines
 }
-\textbf{Pin} & \textbf{\DRAudiRed{} service connector} \\
-1 & Seatbelt indicator (+). \\
-2 & Speed sensor input. \\
-3 & Vehicle ground. \\
-4 & Rear-window defrost indicator (+). \\
-5 & Left turn-signal input (BLL). \\
-6 & Right turn-signal input (BLR). \\
-7 & Ignition-switched supply. \\
-8 & Brake indicator (+). \\
-9 & Front lamp heating indicator (+). \\
-10 & Reserved fault indicator (+). \\
-11 & ABS indicator (+). \\
-12 & Reserved. \\
-13 & Check-engine indicator (-). \\
-14 & Reserved. \\
+\textbf{Pin} & \textbf{Asignación} \\
+1~(D3) & Contacto del indicador de la gama “D” de la transmisión automática. Conecta a masa la lámpara de marcha cuando el selector está en posición~D. \\
+2~(D2) & Contacto del indicador de la segunda gama de la transmisión automática. Conecta a masa la lámpara “2” cuando el selector está en posición~2. \\
+3~(D1) & Contacto del indicador de la gama baja de la transmisión automática. Conecta a masa la lámpara “1” cuando el selector está en posición~1. \\
+4~(SA) & Alimentación común para la indicación del selector automático (\emph{Schaltanzeige}); proporciona los +12~V para las lámparas de gama. \\
+5~(SPERRE) & Contacto del bloqueo de arranque proveniente del selector. Cerrado en estacionamiento o punto muerto para permitir el arranque del motor. \\
 \end{tblr}}
 
+\noindent\textbf{Conector de 14 pines}
 {\scriptsize
 \begin{tblr}{
-    colspec={Q[c,0.8cm] X[l]},
-    hlines,
-    row{1} = {font=\bfseries},
+    colspec={Q[l,2.6cm] X[l]},
+    hlines
 }
-\textbf{Pin} & \textbf{\DRAudiGreen{} service connector} \\
-1 & Not connected. \\
-2 & Speed sensor input. \\
-3 & Vehicle ground. \\
-4 & Rear-window defrost indicator (+). \\
-5 & Left turn-signal input (BLL). \\
-6 & Right turn-signal input (BLR). \\
-7 & Ignition-switched supply. \\
-8 & Brake indicator (+). \\
-9 & Front lamp heating indicator (+). \\
-10 & Reserved fault indicator (+). \\
-11 & ABS indicator (+). \\
-12 & Reserved. \\
-13 & Check-engine indicator (-). \\
-14 & Reserved. \\
+\textbf{Pin} & \textbf{Asignación} \\
+1~(KL~58) & Alimentación de iluminación para la retroiluminación del panel. \\
+2~(MASS) & Retorno de masa del chasis. \\
+3~(TANK) & Entrada del aforador de combustible. \\
+4~(TEMP) & Entrada del sensor de temperatura del refrigerante. \\
+5~(KL~1) & Señal de régimen del motor (terminal~1). \\
+6~(UHR) & +12~V permanente para el reloj y la memoria. \\
+7~(FERNL) & Entrada del indicador de luces largas. \\
+8~(reserved) & Sin conexión. \\
+9~(OEL~1.8) & Interruptor de alta presión de aceite, 1.8~bar. \\
+10~(CAT~VORGL(-)) & Entrada de la lámpara de precalentamiento catalítico / precalentamiento diésel (activa en bajo). \\
+11~(OEL~0.3) & Interruptor de baja presión de aceite, 0.3~bar. \\
+12~(KL~61) & Lámpara de advertencia del alternador y alimentación de excitación. \\
+13~(KL~49a) & Alimentación combinada del indicador de intermitentes. \\
+14~(KL~15) & Alimentación +12~V conmutada por el encendido. \\
 \end{tblr}}
 
-\section{Supplied equipment}
-Each delivery set includes the dashboard assembly, a USBasp programmer, and a speed-sensor harness.
-Electronic speed sensors or cable-drive adapters are supplied according to the selected vehicle kit.
+\subsection{Asignación de conectores para Mk1}
+Los vehículos Volkswagen Mk1 utilizan las siguientes asignaciones:
+\begin{enumerate}
+    \item Alimentación de iluminación y luces de cruce.
+    \item Referencia de masa MASSE~31.
+    \item Aforador de combustible TANK.
+    \item Sensor de temperatura TEMP.
+    \item Señal de cuentarrevoluciones KL~1.
+    \item +12~V permanente UHR.
+    \item Señal de luces largas KL~56.
+    \item Interruptor de presión de aceite (ALTA) 1.8~bar.
+    \item Interruptor de presión de aceite (BAJA) 0.3~bar.
+    \item Indicador de precalentamiento diésel.
+    \item Entrada CHOKE (sin uso).
+    \item Lámpara del generador KL~61.
+    \item Entrada del intermitente (combinado izquierda/derecha).
+    \item Alimentación de encendido KL~15.
+\end{enumerate}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{digifiz_manual/image010.png}
+    \caption{Diagrama de conexión del mazo para instalaciones Mk1.}
+\end{figure}
+
+\subsection{Conector de servicio de la placa de circuito impreso}
+El tercer conector de la placa replica los conectores del cuadro, con pines numerados de derecha a izquierda en las unidades \ReplicaGenOneShort{} y \ReplicaNextShort{}. Proporciona una interfaz de servicio con las asignaciones listadas en \autoref{tab:service-connector}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Asignaciones del conector de servicio.}
+    \label{tab:service-connector}
+    {\scriptsize
+    \begin{tblr}{
+        colspec={Q[l,1.9cm] X[l]},
+        hlines,
+    }
+        \textbf{Posición} & \textbf{Asignación} \\
+        1 & Salida de indicador. \\
+        2 & Entrada del sensor de velocidad (SPM\_M). \\
+        3 & Masa del vehículo. \\
+        4 & Salida de indicador. \\
+        5 & Entrada del optoacoplador del intermitente izquierdo. \\
+        6 & Entrada del optoacoplador del intermitente derecho. \\
+        7 & +12~V de encendido. \\
+        8 & Entrada específica para diésel. \\
+        9 & Entrada de indicador (positiva). \\
+        10 & Entrada alternativa de RPM (sin uso, solo \ReplicaNextShort{}). \\
+        11 & \ReplicaGenOneShort{}: salida de indicador (normalmente desconectada); \ReplicaNextShort{}: entrada de freno (activa en bajo). \\
+        12 & Reservado. \\
+        13 & Entrada de check engine. \\
+        14 & Sin contacto. \\
+    \end{tblr}}
+\end{table}
+
+\subsection{Conectores de expansión auxiliares}
+En la placa principal se instalan tres cabeceras adicionales de cuatro pines para simplificar las ampliaciones del mazo y los trabajos de servicio:
+\begin{itemize}
+    \item \textbf{Señales analógicas de expansión:} proporciona un punto de conexión dedicado para entradas analógicas adicionales al integrar sensores personalizados.
+    \item \textbf{Espejo de la MFA:} duplica el conector \textsc{MFA} estándar para admitir la derivación en paralelo de las señales del ordenador de viaje.
+    \item \textbf{Duplicados analógicos:} repite las entradas de temperatura de aceite, temperatura ambiente e indicador de freno para que estos circuitos puedan rutearse a módulos externos de registro o monitorización.
+\end{itemize}
+Los tres utilizan el conector \mbox{KF2510-4p}, que no se suministra con el kit del cuadro y debe adquirirse por separado en caso necesario.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{digifiz_manual/ext_conn.png}
+    \caption{Distribución de los conectores auxiliares en la placa principal.}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    {\small
+    \begin{tblr}{
+        colspec={Q[l,2.3cm] Q[c,1.3cm] X[l]},
+        hlines,
+        row{1} = {font=\bfseries}
+    }
+    Conector & Pin & Asignación \\
+    Conector~I & 4 & Entrada analógica auxiliar~1 \\
+    Conector~I & 3 & Masa (GND) \\
+    Conector~I & 2 & Entrada analógica auxiliar~2 \\
+    Conector~I & 1 & VCC (3V3, sin fusible\textbf{!!!}) \\
+    Conector~II & 4 & Reinicio MFA \\
+    Conector~II & 3 & Masa (GND) \\
+    Conector~II & 2 & Bloque de memoria MFA \\
+    Conector~II & 1 & Modo MFA \\
+    Conector~III & 4 & Salida del sensor de temperatura de aceite \\
+    Conector~III & 3 & Masa (GND) \\
+    Conector~III & 2 & Salida del sensor de temperatura exterior \\
+    Conector~III & 1 & Indicador de freno \\
+    \end{tblr}}
+    \caption{Asignaciones de los conectores de expansión auxiliares.}
+\end{table}
+
+\section{Software integrado y contenido del suministro}
+El firmware del cuadro se publica en la siguiente dirección:
+\displayurl{https://github.com/Sgw32/DigifizReplica}
+Hay dos juegos de entrega disponibles:
+\begin{itemize}
+    \item \textbf{\ReplicaGenOne{}:} conjunto del cuadro, mazo de temperaturas ambiente y de aceite, programador USBasp y, para sensores remotos, mazo del sensor de velocidad.
+    \item \textbf{\ReplicaNextLong{}:} conjunto del cuadro y mazo del sensor de velocidad electrónico.
+\end{itemize}

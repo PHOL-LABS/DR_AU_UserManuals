@@ -1,10 +1,7 @@
-\chapter{Operating Principle} \label{ch:operating-principle}
+\chapter{Принцип работы}\label{ch:operating-principle}
 
-The \DRAudi{} dashboard reuses the original Audi housing, vehicle connectors, and either the factory mechanical speedometer cable or an electronic speed sensor supplied with the kit.
-The electronics are mounted on a fiberglass PCB populated with discrete components driven by an ATmega~2560 microcontroller.
-Seven-segment indicators are controlled by MAX~7219 and STLED316 driver ICs that manage the anode and cathode matrices of the LED displays.
+Панель \DRAudi{} использует штатный корпус Audi, штатные разъёмы и механический трос спидометра либо электронный датчик скорости из комплекта.
+Электроника выполнена на стеклотекстолитовой плате на базе микроконтроллера ATmega~2560.
+Семисегментные индикаторы управляются драйверами MAX~7219 и STLED316.
 
-The faceplate integrates the LED indication block, and the module is powered directly from the vehicle harness without a standby supply; no leakage current is present when the ignition is off.
-The dashboard tolerates input voltages from 9~V to 24~V~DC and reads the vehicle sensors through the wiring described in \autoref{ch:description}.
-
-Both the Bluetooth and miniUIOD-equipped variants share the same display layout and MFA pages, ensuring that installation and day-to-day operation remain consistent regardless of the configuration interface.
+Алгоритмы фильтрации и индикации реализованы в прошивке и настраиваются через Bluetooth или miniUIOD (Wi-Fi) в зависимости от модификации.

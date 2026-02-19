@@ -1,13 +1,12 @@
-\chapter{Technical specifications}\label{ch:technical-specs}
+\chapter{Технические характеристики}\label{ch:technical-specs}
 
-The \DRAudi{} dashboard draws no leakage current when switched off and operates from the vehicle electrical system between 9~V and 24~V~DC.
+Панель \DRAudi{} не имеет токов утечки в выключенном состоянии и работает от бортовой сети 9--24~В постоянного тока.
 
-\section{Measurement capabilities}
+\section{Возможности измерения}
 \begin{itemize}
-    \item \textbf{Vehicle speed:} measured through the factory cable or electronic speed sensor. The systematic error is 10~km/h, the relative error is 3~km/h, and the indication saturates at 999~km/h (or mph for imperial units).
-    \item \textbf{Engine speed:} derived from the ignition signal via an optocoupler stage with a 430~nF/1.2~k\ensuremath{\Omega} RC network and a diode limiter. The absolute and relative errors are within 200~rpm.
-    \item \textbf{Fuel level:} read from the resistive tank sender with an uncertainty of approximately 10~litres.
-    \item \textbf{Coolant temperature:} indicated qualitatively using the standard thermistor connected through the vehicle harness; quantitative values are not displayed.
-    \item \textbf{Timekeeping:} maintained to within one minute.
-    \item \textbf{Indicator lamps:} direction indicators, high beam, oil pressure warnings, generator status, handbrake, rear window heating or diesel glow-plug, and front and rear fog lights.
+    \item скорость автомобиля;
+    \item обороты двигателя;
+    \item температура охлаждающей жидкости;
+    \item уровень топлива;
+    \item сервисные и предупреждающие индикации.
 \end{itemize}

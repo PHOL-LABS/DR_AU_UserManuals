@@ -1,1 +1,10 @@
-% TODO: Placeholder for chapters_ru content update.
+\chapter{Типовые сценарии настройки \DRAudi{}}\label{ch:replica-scenarios}
+
+Перед диагностикой определите используемый режим: Bluetooth (глава~\ref{ch:replica-setup}) или miniUIOD Wi-Fi (глава~\ref{ch:replica-next-setup}).
+
+\begin{description}
+    \item[Не определяется Bluetooth-модуль] Используйте Bluetooth Classic, проверьте имя устройства \texttt{Digifiz} и настройки терминала (LF).
+    \item[Нет показаний скорости] Проверьте тип датчика, распиновку и коэффициент калибровки.
+    \item[Некорректные обороты] Проверьте вход тахосигнала, фильтрацию и масштабный коэффициент.
+    \item[Неверный уровень топлива] Проверьте тип датчика бака и параметры калибровки min/max.
+\end{description}

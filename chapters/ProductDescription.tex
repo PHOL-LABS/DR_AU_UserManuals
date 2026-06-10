@@ -206,6 +206,17 @@ The pin assignments differ slightly between the red and green versions; both are
 14 & Reserved. \\
 \end{tblr}}
 
+
+\section{Electronic speed sensor compatibility}
+The dashboard accepts a standard electronic vehicle speed sensor; in practice, any electronic speed sensor that provides the normal gearbox speed signal is electrically compatible.
+The recommended sensor is \texttt{191919149D}, also supplied as \texttt{NTYECP-AU-033}; \texttt{357919149B}/\texttt{357919149} is also recommended, especially for O2A and O2J gearboxes.
+
+Alternative compatible sensors include \texttt{IG0919149A}/\texttt{1H0919149A} with mating connector \texttt{357972753}, or \texttt{1H0919149C} with the different mating connector \texttt{1J0973723}.
+These alternatives use the same signal type and are fully electrically compatible with the dashboard.
+
+The colour of the drive gear fitted in the gearbox is not critical: a gearbox with a white gear or a red gear will work, and a speed sensor supplied with a red gear remains suitable.
+Connect the speedometer signal to the 14-position (2\,$\times$\,7) KF2510 additional-signals connector; the speed-sensor input pin is shown in the service-connector pin-out above.
+
 \section{Supplied equipment}
 Each delivery set includes the dashboard assembly, a USBasp programmer, and a speed-sensor harness.
 Electronic speed sensors or cable-drive adapters are supplied according to the selected vehicle kit.
